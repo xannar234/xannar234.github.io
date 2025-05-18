@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бурение скважин на воду - БурБРО</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #F9FAFB;
+            color: #1F2937;
+            position: relative;
+        }
+
+        .hero-bg {
+            /* Обновленные стили для фона с текстурой воды и затемняющим слоем */
+            background-image: 
+                linear-gradient(rgba(0, 191, 255, 0.9), rgba(5, 25, 50, 0.75)), /* ИЗМЕНЕНО: Затемняющий градиент сделан светлее */
+                url('https://images.unsplash.com/photo-1488934082766-b6859210887e?q=80&w=1920&auto=format&fit=crop'); /* Текстура воды (волны на поверхности) */
+            background-size: cover; /* Масштабирование изображения для покрытия всей области */
+            background-position: center; /* Центрирование изображения */
+            position: relative; 
+            color: #F9FAFB; 
+            overflow: hidden;
+        }
+
+        .hero-bg > .container {
+            position: relative;
+            z-index: 2; 
+        }
+
+        header, section, footer { 
+            position: relative;
+            z-index: 1; 
+        }
+        section:not(.hero-bg) {
+             background-color: #F9FAFB;
+        }
+        header {
+            background-color: #FFFFFF;
+            z-index: 50; 
+        }
+        footer {
+            background-color: #F3F4F6;
+        }
+
+
+        .section-title {
+            font-size: 3rem;
+            line-height: 1;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #111827;
+        }
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3.75rem;
+            }
+        }
+
+        .gradient-border-wrapper {
+            padding: 2px; 
+            border-radius: 1rem; 
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8);
+            background-color: transparent;
+            background-size: 200% auto;
+            animation: gradient-flow 4s linear infinite;
+            box-shadow: 0 6px 18px rgba(59, 130, 246, 0.25); 
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            display: flex;
+        }
+        .gradient-border-wrapper:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(96, 165, 250, 0.35);
+        }
+
+        .content-inside-border { 
+            padding: 1.5rem;
+            border-radius: calc(1rem - 2px);
+            height: 100%;
+            width: 100%;
+        }
+        .service-card-wrapper-outer.gradient-border-wrapper .content-inside-border {
+            background-color: #F9FAFB;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 170px;
+        }
+        .service-card-wrapper-outer.gradient-border-wrapper .content-inside-border h3 {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1F2937;
+        }
+        .service-card-wrapper-outer.gradient-border-wrapper .content-inside-border p {
+            font-size: 0.875rem;
+            line-height: 1.3rem;
+            color: #4B5563;
+        }
+
+        .why-us-card-content { 
+            background-color: #FFFFFF; 
+            padding: 1.5rem; 
+            text-align: center;
+            border-radius: calc(1rem - 2px); 
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .why-us-card-content .icon-animated-gradient {
+            stroke-width: 2.5;
+            margin-bottom: 1rem; 
+        }
+         .why-us-card-content h3 {
+            @apply text-slate-800 text-xl font-semibold mb-2;
+        }
+        .why-us-card-content p {
+            @apply text-slate-600 text-sm;
+        }
+
+        .about-content {
+             background-color: #F9FAFB;
+             text-align: left;
+             display: flex;
+             flex-direction: column;
+             justify-content: space-between;
+        }
+        .about-content .btn-primary {
+            margin-top: auto;
+        }
+
+        .testimonial-content-wrapper {
+             background-color: #FFFFFF;
+             display: flex;
+             flex-direction: column;
+             justify-content: space-between;
+             text-align: left;
+             min-height: 150px;
+        }
+        .testimonial-content-wrapper p.italic {
+            @apply text-gray-600 mb-4;
+        }
+         .testimonial-content-wrapper p.font-semibold {
+            @apply text-gray-800 mt-auto;
+        }
+        
+        .quick-request-form-content {
+            background-color: #FFFFFF;
+            padding: 1.5rem;
+            border-radius: calc(1rem - 2px);
+            text-align: left;
+            height: auto;
+            display: block;
+        }
+        .quick-request-form-content label {
+            @apply text-gray-700 block mb-1 text-sm font-medium;
+        }
+        .quick-request-form-content input[type="text"],
+        .quick-request-form-content input[type="tel"] {
+            @apply bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400 focus:ring-sky-500 focus:border-sky-500 rounded-md w-full p-2.5;
+        }
+
+        .btn {
+            padding-left: 2rem;
+            padding-right: 2rem;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: inline-block;
+            text-align: center;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8);
+            background-size: 200% auto;
+            animation: gradient-flow 4s linear infinite;
+            color: white;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #1F2937;
+            border-width: 2px;
+            border-color: #60A5FA;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-color: #3B82F6;
+            color: #111827;
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: #ffffff;
+            color: #1F2937;
+            margin: 10% auto;
+            padding: 25px;
+            border: 1px solid #E5E7EB;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .modal-content h3 {
+             color: #10B981;
+        }
+        .close-button {
+            color: #6B7280;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #111827;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .animated-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animated-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition-property: opacity, transform;
+            transition-duration: 0.5s;
+            transition-timing-function: ease-out;
+        }
+        .stagger-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animated-gradient-text {
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gradient-flow 4s linear infinite;
+        }
+         @keyframes gradient-flow { /* Анимация для градиентного текста и рамок */
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+
+
+    </style>
+</head>
+<body class="text-gray-800">
+    <svg width="0" height="0" style="position:absolute;pointer-events:none;visibility:hidden;">
+      <defs>
+        <linearGradient id="iconAnimatedGradient" gradientUnits="objectBoundingBox" x1="0" y1="0.5" x2="2" y2="0.5">
+            <stop offset="0%" stop-color="#38BDF8"/>
+            <stop offset="25%" stop-color="#A78BFA"/>
+            <stop offset="50%" stop-color="#8B5CF6"/>
+            <stop offset="75%" stop-color="#6366F1"/>
+            <stop offset="100%" stop-color="#38BDF8"/>
+            <animateTransform
+                attributeName="gradientTransform"
+                type="translate"
+                values="0,0; -1,0; 0,0"
+                dur="3s"
+                repeatCount="indefinite" />
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <header class="bg-white shadow-md sticky top-0"> <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold animated-gradient-text">БурБРО</a>
+            <div class="space-x-4 hidden md:flex">
+                <a href="#" class="text-gray-600 hover:text-sky-600 transition-colors">Главная</a>
+                <a href="services.html" class="text-gray-600 hover:text-sky-600 transition-colors">Услуги</a>
+                <a href="pricing.html" class="text-gray-600 hover:text-sky-600 transition-colors">Цены</a>
+                <a href="contact.html" class="animated-gradient-text font-semibold">Оставить заявку</a>
+            </div>
+            <button id="mobileMenuButton" class="md:hidden text-gray-600 hover:text-sky-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg">
+            <a href="#" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Главная</a>
+            <a href="services.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Услуги</a>
+            <a href="pricing.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Цены</a>
+            <a href="contact.html" class="block px-6 py-3 animated-gradient-text font-semibold">Оставить заявку</a>
+        </div>
+    </header>
+
+    <section class="hero-bg text-white py-20 md:py-32"> 
+        <div class="container mx-auto px-6 text-center"> <h1 class="text-4xl md:text-6xl font-bold mb-6 animated-section is-visible">Чистая вода из собственной скважины</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto animated-section is-visible" style="transition-delay: 100ms;">Профессиональное бурение и обустройство скважин на воду. Гарантия качества и надежности.</p>
+            <a href="contact.html" class="btn btn-primary text-lg animated-section is-visible" style="transition-delay: 200ms;">Заказать консультацию</a>
+        </div>
+    </section>
+
+    <section id="services" class="py-16 md:py-24 animated-section">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Наши услуги</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 stagger-container">
+                <div class="gradient-border-wrapper service-card-wrapper-outer stagger-item">
+                    <div class="content-inside-border service-card-content">
+                        <h3>Бурение скважин</h3>
+                        <p>Бурение артезианских и песчаных скважин под ключ с использованием современной техники.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-wrapper service-card-wrapper-outer stagger-item" style="transition-delay: 200ms;">
+                     <div class="content-inside-border service-card-content">
+                        <h3>Обустройство скважин</h3>
+                        <p>Монтаж насосного оборудования, кессонов, адаптеров. Подведение воды в дом.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-wrapper service-card-wrapper-outer stagger-item" style="transition-delay: 400ms;">
+                    <div class="content-inside-border service-card-content">
+                        <h3>Ремонт и чистка</h3>
+                        <p>Диагностика, ремонт и очистка скважин для восстановления дебита и качества воды.</p>
+                    </div>
+                </div>
+            </div>
+             <div class="text-center mt-12 stagger-item" style="transition-delay: 600ms;">
+                <a href="services.html" class="btn btn-primary text-lg">Все услуги</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 md:py-24 animated-section">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">О нас</h2>
+            <div class="flex flex-col md:flex-row md:items-stretch gap-8 md:gap-12">
+                <div class="md:w-1/2 grid grid-cols-2 grid-rows-2 gap-4 h-full stagger-container">
+                    <img src="https://i.ibb.co/LXVBnpN2/1-jpg.png" alt="Буровая установка" class="rounded-lg shadow-xl w-full h-full object-cover stagger-item" onerror="this.src='https://placehold.co/300x250/cccccc/ffffff?text=Ошибка+загрузки'">
+                    <img src="https://placehold.co/300x250/CBD5E1/475569?text=Фото+2" alt="Пример работы или оборудования 2" class="rounded-lg shadow-xl w-full h-full object-cover stagger-item" style="transition-delay: 50ms;" onerror="this.onerror=null; this.src='https://placehold.co/300x250/cccccc/ffffff?text=Ошибка+загрузки'">
+                    <img src="https://placehold.co/300x250/CBD5E1/475569?text=Фото+3" alt="Пример работы или оборудования 3" class="rounded-lg shadow-xl w-full h-full object-cover stagger-item" style="transition-delay: 100ms;" onerror="this.onerror=null; this.src='https://placehold.co/300x250/cccccc/ffffff?text=Ошибка+загрузки'">
+                    <img src="https://placehold.co/300x250/CBD5E1/475569?text=Фото+4" alt="Пример работы или оборудования 4" class="rounded-lg shadow-xl w-full h-full object-cover stagger-item" style="transition-delay: 150ms;" onerror="this.onerror=null; this.src='https://placehold.co/300x250/cccccc/ffffff?text=Ошибка+загрузки'">
+                </div>
+                <div class="md:w-1/2 gradient-border-wrapper stagger-item" style="transition-delay: 200ms;">
+                    <div class="content-inside-border about-content">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Ваш надежный источник чистой воды</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Здравствуйте! Меня зовут Дмитрий, и я – сердце и руки компании "БурБРО". Более 20 лет я посвятил искусству бурения скважин на воду, превратив это ремесло в дело всей жизни. Моя миссия – обеспечить каждый дом, каждый участок надежным и чистым источником воды, ведь вода – это основа комфорта и здоровья.
+                        </p>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            В "БурБРО" мы не просто бурим скважины. Мы создаем долговечные решения, используя только проверенное временем оборудование и высококачественные, сертифицированные материалы. Каждый проект для нас уникален, и мы подходим к нему с максимальной ответственностью, учитывая все особенности вашего участка и ваши потребности. Мы гарантируем прозрачность на всех этапах работ, от первой консультации до сдачи готовой скважины "под ключ". Ваше доверие – наша главная ценность.
+                        </p>
+                        <a href="contact.html" class="btn btn-primary mt-auto">Связаться с нами</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="py-16 md:py-24 animated-section">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Почему выбирают нас?</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-container">
+                <div class="gradient-border-wrapper stagger-item">
+                    <div class="content-inside-border why-us-card-content">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-12 h-12 icon-animated-gradient" stroke="url(#iconAnimatedGradient)">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h3>Гарантия качества</h3>
+                        <p>Предоставляем гарантию на все выполненные работы и материалы.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-wrapper stagger-item" style="transition-delay: 200ms;">
+                    <div class="content-inside-border why-us-card-content">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-12 h-12 icon-animated-gradient" stroke="url(#iconAnimatedGradient)">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h3>Опыт 20 лет</h3>
+                        <p>Многолетний опыт в сфере бурения и обустройства скважин.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-wrapper stagger-item" style="transition-delay: 400ms;">
+                     <div class="content-inside-border why-us-card-content">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-12 h-12 icon-animated-gradient" stroke="url(#iconAnimatedGradient)">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
+                        </svg>
+                        <h3>Современное оборудование</h3>
+                        <p>Используем надежную и производительную буровую технику.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-wrapper stagger-item" style="transition-delay: 600ms;">
+                    <div class="content-inside-border why-us-card-content">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-12 h-12 icon-animated-gradient" stroke="url(#iconAnimatedGradient)">
+                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h3>Честные цены</h3>
+                        <p>Прозрачное ценообразование без скрытых платежей.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-16 md:py-24 animated-section">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Галерея наших работ</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 stagger-container">
+                <img src="https://placehold.co/400x300/E2E8F0/475569?text=Работа+1" alt="Изображение галереи 1" class="rounded-lg shadow-md hover:opacity-80 transition-opacity cursor-pointer w-full h-auto object-cover stagger-item" onerror="this.src='https://placehold.co/400x300/cccccc/ffffff?text=Ошибка+загрузки'">
+                <img src="https://placehold.co/400x300/E2E8F0/475569?text=Работа+2" alt="Изображение галереи 2" class="rounded-lg shadow-md hover:opacity-80 transition-opacity cursor-pointer w-full h-auto object-cover stagger-item" style="transition-delay: 100ms;" onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Ошибка+загрузки'">
+                <img src="https://placehold.co/400x300/E2E8F0/475569?text=Работа+3" alt="Изображение галереи 3" class="rounded-lg shadow-md hover:opacity-80 transition-opacity cursor-pointer w-full h-auto object-cover stagger-item" style="transition-delay: 200ms;" onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Ошибка+загрузки'">
+                <img src="https://placehold.co/400x300/E2E8F0/475569?text=Работа+4" alt="Изображение галереи 4" class="rounded-lg shadow-md hover:opacity-80 transition-opacity cursor-pointer w-full h-auto object-cover stagger-item" style="transition-delay: 300ms;" onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Ошибка+загрузки'">
+                <img src="https://placehold.co/400x300/E2E8F0/475569?text=Работа+5" alt="Изображение галереи 5" class="rounded-lg shadow-md hover:opacity-80 transition-opacity cursor-pointer md:col-span-2 lg:col-span-1 w-full h-auto object-cover stagger-item" style="transition-delay: 400ms;" onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Ошибка+загрузки'">
+                <img src="https://placehold.co/400x300/E2E8F0/475569?text=Работа+6" alt="Изображение галереи 6" class="rounded-lg shadow-md hover:opacity-80 transition-opacity cursor-pointer w-full h-auto object-cover stagger-item" style="transition-delay: 500ms;" onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Ошибка+загрузки'">
+                <img src="https://placehold.co/400x300/E2E8F0/475569?text=Работа+7" alt="Изображение галереи 7" class="rounded-lg shadow-md hover:opacity-80 transition-opacity cursor-pointer w-full h-auto object-cover stagger-item" style="transition-delay: 600ms;" onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Ошибка+загрузки'">
+                <img src="https://placehold.co/400x300/E2E8F0/475569?text=Работа+8" alt="Изображение галереи 8" class="rounded-lg shadow-md hover:opacity-80 transition-opacity cursor-pointer w-full h-auto object-cover stagger-item" style="transition-delay: 700ms;" onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/ffffff?text=Ошибка+загрузки'">
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-16 md:py-24 animated-section">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Отзывы клиентов</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-container">
+                <div class="gradient-border-wrapper stagger-item">
+                    <div class="content-inside-border testimonial-content-wrapper">
+                        <p class="italic mb-4">"Очень довольны работой! Вода чистая, напор хороший. Рекомендую Дмитрия как настоящего профессионала."</p>
+                        <p class="font-semibold">- Имя Клиента, Город</p>
+                    </div>
+                </div>
+                <div class="gradient-border-wrapper stagger-item" style="transition-delay: 200ms;">
+                    <div class="content-inside-border testimonial-content-wrapper">
+                        <p class="italic mb-4">"Быстро, качественно и по разумной цене. Скважину пробурили за один день. Спасибо большое!"</p>
+                        <p class="font-semibold">- Имя Клиента, Поселок</p>
+                    </div>
+                </div>
+                <div class="gradient-border-wrapper stagger-item" style="transition-delay: 400ms;">
+                     <div class="content-inside-border testimonial-content-wrapper">
+                        <p class="italic mb-4">"Долго выбирали компанию, остановились на БурБРО и не пожалели. Все объяснили, показали, сделали на совесть."</p>
+                        <p class="font-semibold">- Имя Клиента, Деревня</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quick-request-cta" class="py-16 md:py-24 bg-slate-100">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title text-3xl md:text-4xl mb-8">Готовы начать?</h2>
+            <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-xl mx-auto">
+                Свяжитесь с нами для бесплатной консультации и расчета стоимости вашей скважины.
+            </p>
+            <a href="contact.html" class="btn btn-primary text-xl">Перейти к форме заявки</a>
+        </div>
+    </section>
+
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeModalButton">&times;</span>
+            <h3 class="text-2xl font-semibold mb-4">Заявка отправлена!</h3>
+            <p>Спасибо за ваше обращение! Мы свяжемся с вами в ближайшее время.</p>
+        </div>
+    </div>
+
+    <footer class="bg-gray-100 text-gray-700 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p>&copy; <span id="currentYear"></span> БурБРО. Все права защищены.</p>
+            <p>Разработка сайта - с любовью для папы :)</p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Плавная прокрутка к якорям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId.length > 1 && targetId.startsWith('#') && (this.pathname === window.location.pathname || this.pathname.endsWith('index.html') && window.location.pathname.endsWith('/'))) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                } else if (targetId === '#') { 
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else if (this.getAttribute('href').indexOf('.html') !== -1) { 
+                    window.location.href = this.href;
+                }
+            });
+        });
+
+        const currentYearElement = document.getElementById('currentYear');
+        if (currentYearElement) {
+            currentYearElement.textContent = new Date().getFullYear();
+        }
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                const target = entry.target;
+                if (entry.isIntersecting) {
+                    target.classList.add('is-visible');
+
+                    if (target.classList.contains('stagger-container')) {
+                        const items = target.querySelectorAll('.stagger-item');
+                        items.forEach((item, index) => {
+                            if (!item.classList.contains('is-visible')) {
+                                if (!item.style.transitionDelay) {
+                                   item.style.transitionDelay = `${index * 200}ms`;
+                                }
+                                item.classList.add('is-visible');
+                            }
+                        });
+                    }
+                }
+            });
+        };
+
+        const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+        const elementsToObserve = document.querySelectorAll('.animated-section, .stagger-container, .gradient-border-wrapper');
+        elementsToObserve.forEach(el => {
+            intersectionObserver.observe(el);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroElements = document.querySelectorAll('.hero-bg .animated-section');
+            heroElements.forEach(el => {
+                if (!el.classList.contains('is-visible')) {
+                    el.classList.add('is-visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('img[src^="https://placehold.co"]').forEach(img => {
+            img.onerror = function() {
+                this.src='https://placehold.co/400x300/cccccc/ffffff?text=Ошибка+загрузки+изображения';
+                console.warn(`Failed to load image: ${this.alt}. Replaced with placeholder.`);
+            };
+        });
+    </script>
+</body>
+</html>

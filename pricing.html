@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цены на услуги - БурБРО</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #F9FAFB; 
+            color: #1F2937; 
+            position: relative; 
+        }
+        /* #background-canvas-main { 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
+            opacity: 0.12; 
+            pointer-events: none; 
+        }
+        */
+        
+        header, section, footer {
+            position: relative;
+            z-index: 1; 
+        }
+        section { 
+             background-color: #F9FAFB;
+        }
+        header {
+            background-color: #FFFFFF; 
+        }
+        footer {
+            background-color: #F3F4F6; 
+        }
+
+        .section-title {
+            font-size: 3rem; 
+            line-height: 1;
+            font-weight: 700; 
+            text-align: center; 
+            margin-bottom: 4rem; 
+            color: #111827; 
+        }
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3.75rem; 
+            }
+        }
+        
+        .animated-gradient-text {
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8); 
+            background-size: 200% auto; 
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gradient-flow 4s linear infinite; 
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+
+        .pricing-table-container {
+            max-width: 1024px; 
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem; 
+            padding-right: 1rem;
+        }
+        @media (min-width: 640px) { 
+            .pricing-table-container {
+                padding-left: 1.5rem; 
+                padding-right: 1.5rem;
+            }
+        }
+        @media (min-width: 1024px) { 
+            .pricing-table-container {
+                padding-left: 2rem; 
+                padding-right: 2rem;
+            }
+        }
+
+        .pricing-table { 
+            width: 100%;
+            background-color: #FFFFFF; 
+            border-radius: calc(1rem - 2px); 
+            overflow: hidden; 
+            border-collapse: collapse; 
+        }
+        .pricing-table th, .pricing-table td {
+            padding: 1.25rem 1.5rem; 
+            text-align: left;
+            position: relative; 
+        }
+        .pricing-table th::after, .pricing-table td::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2px; 
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8);
+            background-size: 200% auto;
+            animation: gradient-flow 4s linear infinite;
+        }
+        .pricing-table tr:last-child td::after { 
+            display: none;
+        }
+
+        .pricing-table th {
+            background-color: #F3F4F6; 
+            color: #374151; 
+            font-weight: 600; 
+            font-size: 1rem; 
+        }
+        @media (min-width: 768px) { 
+            .pricing-table th {
+                font-size: 1.125rem; 
+            }
+        }
+        .pricing-table td {
+            color: #4B5563; 
+            font-size: 0.95rem; 
+        }
+         @media (min-width: 768px) { 
+            .pricing-table td {
+                font-size: 1rem; 
+            }
+        }
+        .pricing-table tr:hover {
+            background-color: #F9FAFB; 
+        }
+
+         .animated-section {
+            opacity: 0;
+            transform: translateY(30px); 
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+        }
+        .animated-section.is-visible {
+            opacity: 1;
+            transform: translateY(0); 
+        }
+
+        .stagger-item { 
+            opacity: 0;
+            transform: translateY(20px); 
+            transition-property: opacity, transform;
+            transition-duration: 0.5s; 
+            transition-timing-function: ease-out;
+        }
+        .stagger-item.is-visible { 
+            opacity: 1;
+            transform: translateY(0); 
+        }
+        
+        /* Стили для калькулятора */
+        .calculator-content-wrapper { 
+            background-color: #FFFFFF; 
+            padding: 1.5rem; 
+            border-radius: calc(1rem - 2px); 
+        }
+        .calculator-content-wrapper label { 
+            @apply block text-sm font-medium text-gray-700 mb-1;
+        }
+        
+        /* Стилизация ползунка (range input) */
+        .calculator-content-wrapper input[type="range"] {
+            width: 100%;
+            height: 16px; /* ИЗМЕНЕНО: Увеличена высота для вмещения большего бегунка */
+            -webkit-appearance: none; 
+            appearance: none;
+            background: #E5E7EB; 
+            border-radius: 9999px; 
+            cursor: pointer;
+            outline: none; 
+            margin-top: 5px; 
+            margin-bottom: 5px;
+        }
+
+        /* Стилизация трека (полоски) */
+        .calculator-content-wrapper input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px; /* ИЗМЕНЕНО: Увеличена высота полосы */
+            background: transparent; /* Фон трека будет задан через градиент на самом input */
+            border-radius: 9999px;
+            border: none;
+        }
+        .calculator-content-wrapper input[type="range"]::-moz-range-track {
+            width: 100%;
+            height: px; /* ИЗМЕНЕНО: Увеличена высота полосы */
+            background: transparent; /* Фон трека будет задан через градиент на самом input */
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Стилизация бегунка (thumb) */
+        .calculator-content-wrapper input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; 
+            appearance: none;
+            width: 24px; /* ИЗМЕНЕНО: Увеличен размер бегунка */
+            height: 24px; /* ИЗМЕНЕНО: Увеличен размер бегунка */
+            border-radius: 9999px; 
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8);
+            background-size: 200% auto;
+            animation: gradient-flow 4s linear infinite;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.25); /* Слегка увеличена тень */
+            margin-top: -8px; /* ИЗМЕНЕНО: (8px track - 24px thumb) / 2 для центрирования */
+        }
+        .calculator-content-wrapper input[type="range"]::-moz-range-thumb {
+            width: 24px; /* ИЗМЕНЕНО: Увеличен размер бегунка */
+            height: 24px; /* ИЗМЕНЕНО: Увеличен размер бегунка */
+            border-radius: 9999px;
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8);
+            background-size: 200% auto;
+            animation: gradient-flow 4s linear infinite;
+            cursor: pointer;
+            border: none; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.25); /* Слегка увеличена тень */
+        }
+
+
+        .calculator-content-wrapper .output {
+            @apply text-xl font-semibold text-sky-600 ml-2;
+        }
+        .calculator-content-wrapper .price-output {
+            @apply text-3xl font-bold text-green-600 mt-4 text-center;
+        }
+        .calculator-content-wrapper .radio-group label {
+            @apply inline-flex items-center mr-6 cursor-pointer;
+        }
+        .calculator-content-wrapper .radio-group input[type="radio"] {
+            @apply text-sky-500 focus:ring-sky-400 h-4 w-4;
+        }
+
+        /* Общий класс для контейнеров с градиентной рамкой */
+        .gradient-border-wrapper {
+            padding: 2px; 
+            border-radius: 1rem; 
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8);
+            background-color: transparent; 
+            background-size: 200% auto;
+            animation: gradient-flow 4s linear infinite;
+            box-shadow: 0 6px 18px rgba(59, 130, 246, 0.25); 
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+        }
+        .gradient-border-wrapper:hover { 
+            transform: scale(1.03); 
+            box-shadow: 0 10px 25px rgba(96, 165, 250, 0.35); 
+        }
+        
+        .content-inside-border { 
+            padding: 1.5rem; 
+            border-radius: calc(1rem - 2px); 
+            height: 100%; 
+            width: 100%; 
+        }
+        .btn { 
+            padding-left: 2rem; 
+            padding-right: 2rem; 
+            padding-top: 0.75rem; 
+            padding-bottom: 0.75rem; 
+            border-radius: 9999px; 
+            font-weight: 600; 
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); 
+            transition-duration: 300ms; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+            display: inline-block; 
+            text-align: center; 
+            border: 1px solid transparent; 
+        }
+        .btn-primary { 
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8); 
+            background-size: 200% auto; 
+            animation: gradient-flow 4s linear infinite; 
+            color: white;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body class="text-gray-800">
+    <svg width="0" height="0" style="position:absolute;pointer-events:none;visibility:hidden;">
+      <defs>
+        <linearGradient id="iconAnimatedGradient" gradientUnits="objectBoundingBox" x1="0" y1="0.5" x2="2" y2="0.5"> 
+            <stop offset="0%" stop-color="#38BDF8"/>
+            <stop offset="25%" stop-color="#A78BFA"/>
+            <stop offset="50%" stop-color="#8B5CF6"/>
+            <stop offset="75%" stop-color="#6366F1"/>
+            <stop offset="100%" stop-color="#38BDF8"/>
+            <animateTransform
+                attributeName="gradientTransform"
+                type="translate"
+                values="0,0; -1,0; 0,0" 
+                dur="3s"
+                repeatCount="indefinite" />
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold animated-gradient-text">БурБРО</a> 
+            <div class="space-x-4 hidden md:flex">
+                <a href="index.html" class="text-gray-600 hover:text-sky-600 transition-colors">Главная</a>
+                <a href="services.html" class="text-gray-600 hover:text-sky-600 transition-colors">Услуги</a>
+                <a href="pricing.html" class="text-sky-600 font-semibold transition-colors">Цены</a> 
+                <a href="contact.html" class="animated-gradient-text font-semibold">Оставить заявку</a> 
+            </div>
+            <button id="mobileMenuButton" class="md:hidden text-gray-600 hover:text-sky-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg">
+            <a href="index.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Главная</a>
+            <a href="services.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Услуги</a>
+            <a href="pricing.html" class="block px-6 py-3 text-sky-600 font-semibold hover:bg-gray-100 transition-colors">Цены</a>
+            <a href="contact.html" class="block px-6 py-3 animated-gradient-text font-semibold">Оставить заявку</a>
+        </div>
+    </header>
+
+    <section id="pricing" class="py-16 md:py-24 animated-section">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Цены на услуги</h2>
+            <div class="pricing-table-container stagger-container">
+                <div class="gradient-border-wrapper stagger-item"> <div class="pricing-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Наименование услуги</th>
+                                    <th>Ед. изм.</th>
+                                    <th>Цена (руб.)</th>
+                                    <th>Примечание</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Бурение скважины на песок (до 30м)</td>
+                                    <td>метр</td>
+                                    <td>от 2500</td>
+                                    <td>Включает обсадную трубу нПВХ</td>
+                                </tr>
+                                <tr>
+                                    <td>Бурение артезианской скважины (на известняк)</td>
+                                    <td>метр</td>
+                                    <td>от 3000</td>
+                                    <td>Включает стальную и пластиковую трубу</td>
+                                </tr>
+                                <tr>
+                                    <td>Обустройство скважины с кессоном</td>
+                                    <td>комплекс</td>
+                                    <td>от 80 000</td>
+                                    <td>Под ключ, включая оборудование</td>
+                                </tr>
+                                 <tr>
+                                    <td>Обустройство скважины с адаптером</td>
+                                    <td>комплекс</td>
+                                    <td>от 50 000</td>
+                                    <td>Под ключ, включая оборудование</td>
+                                </tr>
+                                <tr>
+                                    <td>Диагностика скважины</td>
+                                    <td>выезд</td>
+                                    <td>от 3000</td>
+                                    <td>Видеодиагностика, замер дебита</td>
+                                </tr>
+                                <tr>
+                                    <td>Чистка скважины</td>
+                                    <td>услуга</td>
+                                    <td>от 10 000</td>
+                                    <td>В зависимости от сложности</td>
+                                </tr>
+                                <tr>
+                                    <td>Замена насоса</td>
+                                    <td>услуга</td>
+                                    <td>от 5000</td>
+                                    <td>Без стоимости насоса</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <p class="text-center text-gray-600 mt-8 stagger-item" style="transition-delay: 200ms;">* Точная стоимость работ определяется после выезда специалиста и составления сметы. Выезд и консультация - бесплатно!</p>
+                 
+                <div class="gradient-border-wrapper max-w-2xl mx-auto mt-12 stagger-item" style="transition-delay: 400ms;"> <div class="calculator-content-wrapper"> 
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Калькулятор стоимости скважины</h3>
+                        
+                        <div class="mb-6 radio-group">
+                            <label class="block text-lg font-medium text-gray-700 mb-2">Тип скважины:</label>
+                            <label>
+                                <input type="radio" name="wellType" value="artesian" checked class="mr-1">
+                                Артезианская (1300 руб/м)
+                            </label>
+                            <label>
+                                <input type="radio" name="wellType" value="sand" class="mr-1">
+                                На песок (1500 руб/м)
+                            </label>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="depthSlider" class="block text-lg font-medium text-gray-700 mb-2">Глубина скважины: <span id="depthValue" class="output">60</span> м</label>
+                            <input type="range" id="depthSlider" name="depth" min="1" max="120" value="60" class="w-full">
+                        </div>
+
+                        <div class="price-output">
+                            Ориентировочная стоимость: <span id="calculatedPrice">78000</span> руб.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="text-center mt-12 stagger-item" style="transition-delay: 600ms;">
+                    <a href="contact.html" class="btn btn-primary text-lg">Оставить заявку на точный расчет</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-100 text-gray-700 py-8 text-center"> 
+        <div class="container mx-auto px-6">
+            <p>&copy; <span id="currentYear"></span> БурБРО. Все права защищены.</p>
+            <p>Разработка сайта - <a href="index.html" class="text-sky-600 hover:underline">БурБРО</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        if (mobileMenu) {
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        const currentYearElement = document.getElementById('currentYear');
+        if (currentYearElement) {
+            currentYearElement.textContent = new Date().getFullYear();
+        }
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                const target = entry.target;
+                if (entry.isIntersecting) {
+                    target.classList.add('is-visible');
+                   
+                    if (target.classList.contains('stagger-container')) {
+                        const items = target.querySelectorAll('.stagger-item'); 
+                        items.forEach((item, index) => {
+                            if (!item.classList.contains('is-visible')) { 
+                                if (!item.style.transitionDelay) { 
+                                   item.style.transitionDelay = `${index * 200}ms`; 
+                                }
+                                item.classList.add('is-visible');
+                            }
+                        });
+                    }
+                } else {
+                    // target.classList.remove('is-visible'); 
+                    // if (target.classList.contains('stagger-container')) {
+                    //     const items = target.querySelectorAll('.stagger-item');
+                    //     items.forEach(item => {
+                    //         item.classList.remove('is-visible');
+                    //     });
+                    // }
+                }
+            });
+        };
+
+        const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+        const elementsToObserve = document.querySelectorAll('.animated-section, .stagger-container, .gradient-border-wrapper'); 
+        elementsToObserve.forEach(el => {
+            intersectionObserver.observe(el);
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const pricingSection = document.querySelector('#pricing.animated-section');
+            if(pricingSection) {
+                pricingSection.classList.add('is-visible'); 
+            }
+            const pricingStaggerContainer = document.querySelector('#pricing .stagger-container');
+            if(pricingStaggerContainer){
+                 const items = pricingStaggerContainer.querySelectorAll('.stagger-item');
+                 items.forEach((item, index) => {
+                    if (!item.style.transitionDelay) { 
+                        item.style.transitionDelay = `${index * 150}ms`; 
+                    }
+                    item.classList.add('is-visible');
+                 });
+            }
+
+            // Логика калькулятора
+            const depthSlider = document.getElementById('depthSlider');
+            const depthValueDisplay = document.getElementById('depthValue');
+            const calculatedPriceDisplay = document.getElementById('calculatedPrice');
+            const wellTypeRadios = document.querySelectorAll('input[name="wellType"]');
+
+            const pricesPerMeter = {
+                artesian: 1300,
+                sand: 1500
+            };
+
+            function updateSliderBackground() {
+                if (!depthSlider) return;
+                const value = (depthSlider.value - depthSlider.min) / (depthSlider.max - depthSlider.min) * 100;
+                const colorStop1 = '#38BDF8'; 
+                const colorStop2 = '#A78BFA';   
+                const trackColorUnfilled = '#E5E7EB'; 
+                
+                // Обновляем фон самого input[type="range"] для заливки трека
+                depthSlider.style.background = `linear-gradient(to right, ${colorStop1} 0%, ${colorStop2} ${value}%, ${trackColorUnfilled} ${value}%, ${trackColorUnfilled} 100%)`;
+            }
+
+
+            function calculatePrice() {
+                if (!depthSlider || !depthValueDisplay || !calculatedPriceDisplay || wellTypeRadios.length === 0) return;
+                const depth = parseInt(depthSlider.value);
+                let selectedType = 'artesian'; 
+                wellTypeRadios.forEach(radio => {
+                    if (radio.checked) {
+                        selectedType = radio.value;
+                    }
+                });
+
+                const pricePerMeter = pricesPerMeter[selectedType];
+                const totalPrice = depth * pricePerMeter;
+
+                depthValueDisplay.textContent = depth;
+                calculatedPriceDisplay.textContent = totalPrice.toLocaleString('ru-RU'); 
+                updateSliderBackground(); 
+            }
+
+            if (depthSlider) { 
+                depthSlider.addEventListener('input', calculatePrice);
+                wellTypeRadios.forEach(radio => {
+                    radio.addEventListener('change', calculatePrice);
+                });
+                calculatePrice(); // Первоначальный расчет и отрисовка при загрузке
+            }
+
+            /*
+            // --- Код анимации фона Canvas (закомментирован) ---
+            const bgCanvas = document.getElementById('background-canvas-main'); 
+            if (bgCanvas) { 
+                const ctx = bgCanvas.getContext('2d');
+                let animationFrameId;
+
+                const numStripes = 6; 
+                const stripeColors = ['#38BDF8', '#60A5FA', '#8B5CF6', '#A78BFA', '#C4B5FD', '#7C3AED']; 
+                let stripes = [];
+                const constantOpacity = 0.12; 
+                const glowBlur = 6; 
+
+                function resizeCanvas() {
+                    bgCanvas.width = window.innerWidth;
+                    bgCanvas.height = window.innerHeight; 
+                    initializeStripes();
+                    bgCanvas.style.opacity = constantOpacity.toFixed(2); 
+                }
+
+                function Stripe(x, y, angle, speed, color, lineWidth, amplitude, frequency, length) {
+                    this.x = x;
+                    this.y = y;
+                    this.angle = angle; 
+                    this.speed = speed;
+                    this.color = color;
+                    this.lineWidth = lineWidth;
+                    this.amplitude = amplitude;
+                    this.frequency = frequency;
+                    this.phase = Math.random() * Math.PI * 2;
+                    this.time = Math.random() * 100; 
+                    this.length = length; 
+                }
+
+                Stripe.prototype.update = function() {
+                    this.x += Math.cos(this.angle) * this.speed;
+                    this.y += Math.sin(this.angle) * this.speed;
+                    this.time += 0.02; 
+
+                    const margin = this.length * 0.6; 
+                    if (this.x < -margin) this.x = bgCanvas.width + margin * 0.95; 
+                    if (this.x > bgCanvas.width + margin) this.x = -margin * 0.95; 
+                    if (this.y < -margin) this.y = bgCanvas.height + margin * 0.95; 
+                    if (this.y > bgCanvas.height + margin) this.y = -margin * 0.95; 
+                };
+
+                Stripe.prototype.draw = function(ctx) {
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.strokeStyle = this.color;
+                    ctx.lineWidth = this.lineWidth;
+                    ctx.globalAlpha = 0.7; 
+
+                    if (glowBlur > 0) { 
+                        ctx.shadowBlur = glowBlur;
+                        ctx.shadowColor = this.color; 
+                    }
+
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.angle);
+
+                    for (let i = -this.length / 2; i < this.length / 2; i++) {
+                        const waveX = i;
+                        const waveY = this.amplitude * Math.sin(i * this.frequency + this.time + this.phase);
+                        if (i === -this.length / 2) {
+                            ctx.moveTo(waveX, waveY);
+                        } else {
+                            ctx.lineTo(waveX, waveY);
+                        }
+                    }
+                    ctx.stroke();
+                    ctx.shadowBlur = 0; 
+                    ctx.restore();
+                };
+
+                function initializeStripes() {
+                    stripes = [];
+                    const baseLength = Math.max(bgCanvas.width, bgCanvas.height) * 0.7; 
+
+                    for (let i = 0; i < numStripes; i++) {
+                        const x = Math.random() * bgCanvas.width; 
+                        const y = Math.random() * bgCanvas.height; 
+                        const angle = (Math.random() * Math.PI/2) - Math.PI/4; 
+                        const speed = Math.random() * 0.25 + 0.1; 
+                        const color = stripeColors[i % stripeColors.length];
+                        const lineWidth = Math.random() * 1 + 0.5; 
+                        const amplitude = Math.random() * 10 + 5; 
+                        const frequency = Math.random() * 0.02 + 0.005; 
+                        const length = baseLength * (Math.random() * 0.3 + 0.7); 
+                        stripes.push(new Stripe(x, y, angle, speed, color, lineWidth, amplitude, frequency, length));
+                    }
+                }
+                
+                function animateBackground() {
+                    ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height); 
+                    stripes.forEach(stripe => {
+                        stripe.update();
+                        stripe.draw(ctx);
+                    });
+                    animationFrameId = requestAnimationFrame(animateBackground);
+                }
+
+                resizeCanvas(); 
+                animateBackground(); 
+
+                window.addEventListener('resize', () => {
+                    cancelAnimationFrame(animationFrameId);
+                    resizeCanvas(); 
+                    animateBackground(); 
+                });
+            }
+            */
+        }); 
+
+        document.querySelectorAll('img[src^="https://placehold.co"]').forEach(img => {
+            img.onerror = function() {
+                this.src='https://placehold.co/400x300/cccccc/ffffff?text=Ошибка+изображения';
+                console.warn(`Failed to load image: ${this.alt}`);
+            };
+        });
+    </script>
+</body>
+</html>

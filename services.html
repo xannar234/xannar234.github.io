@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши Услуги - БурБРО</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #F9FAFB; /* Светло-серый фон для основной части */
+            color: #1F2937; /* Основной цвет текста */
+            position: relative; /* Для z-index фона canvas */
+        }
+        /*
+        #background-canvas-main { 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; 
+            opacity: 0.12; 
+            pointer-events: none; 
+        }
+        */
+        
+        header, section, footer {
+            position: relative;
+            z-index: 1; /* Контент поверх фона canvas */
+        }
+        section { 
+             background-color: #F9FAFB; /* Фон для секций по умолчанию */
+        }
+        header {
+            background-color: #FFFFFF; /* Белый фон для шапки */
+        }
+        footer {
+            background-color: #F3F4F6; /* Светло-серый фон для подвала */
+        }
+
+        .section-title {
+            font-size: 3rem; /* Размер заголовка секции */
+            line-height: 1;
+            font-weight: 700; /* Жирное начертание */
+            text-align: center; /* Центрирование текста */
+            margin-bottom: 4rem; /* Отступ снизу */
+            color: #111827; /* Темно-серый цвет заголовка */
+        }
+        @media (min-width: 768px) { /* Адаптивность для больших экранов */
+            .section-title {
+                font-size: 3.75rem; /* Увеличенный размер заголовка */
+            }
+        }
+        
+        .animated-gradient-text { /* Стиль для текста с анимированным градиентом */
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8); /* Градиент */
+            background-size: 200% auto; /* Размер фона для анимации */
+            color: transparent; /* Текст становится прозрачным */
+            -webkit-background-clip: text; /* Обрезка фона по форме текста (для WebKit) */
+            background-clip: text; /* Обрезка фона по форме текста */
+            animation: gradient-flow 4s linear infinite; /* Анимация движения градиента */
+        }
+
+        @keyframes gradient-flow { /* Анимация движения градиента */
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+
+        /* Общий класс для контейнеров с градиентной рамкой и постоянным свечением */
+        .gradient-border-wrapper {
+            padding: 2px; /* Толщина рамки */
+            border-radius: 1.5rem; /* Скругление для внешнего контейнера, как у service-oval */
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8); /* Градиент для рамки */
+            background-size: 200% auto; /* Для анимации градиента */
+            animation: gradient-flow 4s linear infinite; /* Анимация градиента */
+            box-shadow: 0 6px 18px rgba(59, 130, 246, 0.25); /* Постоянное свечение */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Плавный переход для ховера */
+        }
+        .gradient-border-wrapper:hover {
+            transform: scale(1.03); /* Увеличение при наведении */
+            box-shadow: 0 10px 25px rgba(96, 165, 250, 0.35); /* Усиленное свечение при наведении */
+        }
+        
+        .content-inside-border { /* Внутренний блок для контента внутри рамки (общий) */
+            padding: 1.5rem; /* Внутренние отступы */
+            border-radius: calc(1.5rem - 2px); /* Скругление чуть меньше внешнего, чтобы рамка была видна */
+            height: 100%; 
+            width: 100%; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        /* Стили для контента карточек услуг на странице services.html */
+        .service-page-card-content {
+            background-color: #FFFFFF; /* Белый фон для карточек услуг */
+            min-height: 200px; /* Минимальная высота карточки */
+        }
+        .service-page-card-content h3 {
+            font-size: 1.375rem; /* Размер заголовка карточки */
+            line-height: 1.75rem;
+            font-weight: 600; /* Полужирное начертание */
+            margin-bottom: 0.75rem; /* Отступ снизу */
+            color: #1F2937; /* Темный цвет для заголовка */
+        }
+        .service-page-card-content p {
+            font-size: 0.9rem; /* Размер текста описания */
+            line-height: 1.4rem;
+            color: #4B5563; /* Серый цвет для текста */
+        }
+        
+         .animated-section { /* Стили для анимации появления секций */
+            opacity: 0;
+            transform: translateY(30px); 
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+        }
+        .animated-section.is-visible { /* Класс для видимой анимированной секции */
+            opacity: 1;
+            transform: translateY(0); 
+        }
+
+        .stagger-item { /* Стили для анимации появления элементов с задержкой */
+            opacity: 0;
+            transform: translateY(20px); 
+            transition-property: opacity, transform;
+            transition-duration: 0.5s; 
+            transition-timing-function: ease-out;
+        }
+        .stagger-item.is-visible { /* Класс для видимого элемента с задержкой */
+            opacity: 1;
+            transform: translateY(0); 
+        }
+        .btn { /* Общие стили для кнопок */
+            padding-left: 2rem; 
+            padding-right: 2rem; 
+            padding-top: 0.75rem; 
+            padding-bottom: 0.75rem; 
+            border-radius: 9999px; /* Полностью скругленные края */
+            font-weight: 600; /* Полужирное начертание */
+            transition-property: all; /* Плавный переход для всех свойств */
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); 
+            transition-duration: 300ms; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Тень */
+            display: inline-block; 
+            text-align: center; 
+            border: 1px solid transparent; 
+        }
+        .btn-primary { /* Стили для основной кнопки */
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8); /* Градиентный фон */
+            background-size: 200% auto; /* Для анимации градиента */
+            animation: gradient-flow 4s linear infinite; /* Анимация градиента */
+            color: white; /* Белый цвет текста */
+        }
+        .btn-primary:hover { /* Эффект при наведении на основную кнопку */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Усиленная тень */
+            transform: scale(1.05); /* Небольшое увеличение */
+        }
+
+    </style>
+</head>
+<body class="text-gray-800">
+    <svg width="0" height="0" style="position:absolute;pointer-events:none;visibility:hidden;"> <defs>
+        <linearGradient id="iconAnimatedGradient" gradientUnits="objectBoundingBox" x1="0" y1="0.5" x2="2" y2="0.5"> 
+            <stop offset="0%" stop-color="#38BDF8"/>
+            <stop offset="25%" stop-color="#A78BFA"/>
+            <stop offset="50%" stop-color="#8B5CF6"/>
+            <stop offset="75%" stop-color="#6366F1"/>
+            <stop offset="100%" stop-color="#38BDF8"/>
+            <animateTransform
+                attributeName="gradientTransform"
+                type="translate"
+                values="0,0; -1,0; 0,0" 
+                dur="3s"
+                repeatCount="indefinite" />
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <header class="bg-white shadow-md sticky top-0 z-50"> <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold animated-gradient-text">БурБРО</a> <div class="space-x-4 hidden md:flex"> <a href="index.html" class="text-gray-600 hover:text-sky-600 transition-colors">Главная</a>
+                <a href="services.html" class="text-sky-600 font-semibold transition-colors">Услуги</a> <a href="pricing.html" class="text-gray-600 hover:text-sky-600 transition-colors">Цены</a> 
+                <a href="contact.html" class="animated-gradient-text font-semibold">Оставить заявку</a> </div>
+            <button id="mobileMenuButton" class="md:hidden text-gray-600 hover:text-sky-600"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg"> <a href="index.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Главная</a>
+            <a href="services.html" class="block px-6 py-3 text-sky-600 font-semibold hover:bg-gray-100 transition-colors">Услуги</a>
+            <a href="pricing.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Цены</a>
+            <a href="contact.html" class="block px-6 py-3 animated-gradient-text font-semibold">Оставить заявку</a> </div>
+    </header>
+
+    <section id="services-content" class="py-16 md:py-24 animated-section"> <div class="container mx-auto px-6">
+            <h2 class="section-title">Наши услуги</h2>
+            <p class="text-center text-gray-600 text-lg mb-12 max-w-3xl mx-auto stagger-item">
+                Мы предлагаем полный комплекс услуг по бурению и обустройству скважин на воду для частных домов, дач и промышленных объектов. Наша цель - обеспечить вас надежным и долговечным источником чистой воды.
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 stagger-container"> <div class="gradient-border-wrapper stagger-item">
+                    <div class="content-inside-border service-page-card-content">
+                        <h3>Бурение скважин на песок</h3>
+                        <p>Оптимальное решение для получения воды с неглубоких водоносных горизонтов. Быстрое бурение, доступная стоимость. Идеально для полива и технических нужд.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-wrapper stagger-item" style="transition-delay: 200ms;"> 
+                     <div class="content-inside-border service-page-card-content">
+                        <h3>Бурение артезианских скважин</h3>
+                        <p>Глубокие скважины для доступа к чистейшей воде из известняковых слоев. Высокий дебит, долговечность и стабильное водоснабжение круглый год.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-wrapper stagger-item" style="transition-delay: 400ms;"> 
+                    <div class="content-inside-border service-page-card-content">
+                        <h3>Обустройство скважин "под ключ"</h3>
+                        <p>Полный комплекс работ: монтаж насосного оборудования, установка кессона или адаптера, прокладка трубопровода, автоматизация системы водоснабжения.</p>
+                    </div>
+                </div>
+                 <div class="gradient-border-wrapper stagger-item" style="transition-delay: 600ms;"> 
+                    <div class="content-inside-border service-page-card-content">
+                        <h3>Ремонт и обслуживание скважин</h3>
+                        <p>Диагностика неисправностей, чистка скважин от ила и песка, замена насосов, ремонт обсадных колонн и другие работы по восстановлению работоспособности.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-wrapper stagger-item" style="transition-delay: 800ms;"> 
+                     <div class="content-inside-border service-page-card-content">
+                        <h3>Видеодиагностика скважин</h3>
+                        <p>Современный метод обследования состояния скважины с помощью специальной камеры. Позволяет точно определить проблемы и спланировать ремонт.</p>
+                    </div>
+                </div>
+                <div class="gradient-border-wrapper stagger-item" style="transition-delay: 1000ms;"> 
+                    <div class="content-inside-border service-page-card-content">
+                        <h3>Анализ воды</h3>
+                        <p>Проведение химического и бактериологического анализа воды из вашей скважины для подбора оптимальной системы фильтрации и очистки.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-16 stagger-item" style="transition-delay: 1200ms;">
+                <a href="contact.html" class="btn btn-primary text-lg">Оставить заявку</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-100 text-gray-700 py-8 text-center"> <div class="container mx-auto px-6">
+            <p>&copy; <span id="currentYear"></span> БурБРО. Все права защищены.</p>
+            <p>Разработка сайта - <a href="index.html" class="text-sky-600 hover:underline">БурБРО</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Мобильное меню ---
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden'); // Показать/скрыть меню
+            });
+        }
+        if (mobileMenu) { // Закрытие меню при клике на ссылку в нем
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // --- Динамическое обновление года в футере ---
+        const currentYearElement = document.getElementById('currentYear');
+        if (currentYearElement) {
+            currentYearElement.textContent = new Date().getFullYear();
+        }
+        
+        // --- Intersection Observer для анимации элементов при прокрутке ---
+        const observerOptions = {
+            root: null, // Отслеживать относительно viewport
+            rootMargin: '0px',
+            threshold: 0.1 // Срабатывать, когда 10% элемента видно
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                const target = entry.target;
+                if (entry.isIntersecting) { // Если элемент появился в поле зрения
+                    target.classList.add('is-visible');
+                   
+                    // Для контейнеров с элементами, появляющимися с задержкой
+                    if (target.classList.contains('stagger-container')) {
+                        const items = target.querySelectorAll('.stagger-item'); 
+                        items.forEach((item, index) => {
+                            if (!item.classList.contains('is-visible')) { 
+                                if (!item.style.transitionDelay) { // Установить задержку, если еще не задана
+                                   item.style.transitionDelay = `${index * 200}ms`; 
+                                }
+                                item.classList.add('is-visible');
+                            }
+                        });
+                    }
+                    // observer.unobserve(target); // Можно раскомментировать, если анимация нужна только один раз
+                } else {
+                    // Можно добавить логику для повторной анимации, если элемент уходит из поля зрения и возвращается
+                    // target.classList.remove('is-visible'); 
+                }
+            });
+        };
+
+        const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+        const elementsToObserve = document.querySelectorAll('.animated-section, .stagger-container, .gradient-border-wrapper'); 
+        elementsToObserve.forEach(el => {
+            intersectionObserver.observe(el); // Начать отслеживание каждого элемента
+        });
+        
+        // --- Инициализация анимаций при загрузке страницы ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Анимация для основной секции услуг при загрузке
+            const servicesSection = document.querySelector('#services-content.animated-section');
+            if(servicesSection) {
+                servicesSection.classList.add('is-visible'); 
+            }
+            // Анимация для элементов с задержкой внутри секции услуг
+            const servicesStaggerContainer = document.querySelector('#services-content .stagger-container');
+            if(servicesStaggerContainer){
+                 const items = servicesStaggerContainer.querySelectorAll('.stagger-item');
+                 items.forEach((item, index) => {
+                    if (!item.style.transitionDelay) { 
+                        item.style.transitionDelay = `${index * 150}ms`; // Немного уменьшенная задержка для этой страницы
+                    }
+                    item.classList.add('is-visible');
+                 });
+            }
+             // Анимация для последней кнопки "Оставить заявку"
+            const ctaButton = document.querySelector('#services-content .text-center.stagger-item > a.btn-primary');
+            if (ctaButton && ctaButton.parentElement.classList.contains('stagger-item')) {
+                 if (!ctaButton.parentElement.style.transitionDelay) {
+                    ctaButton.parentElement.style.transitionDelay = `${(servicesStaggerContainer ? servicesStaggerContainer.querySelectorAll('.stagger-item').length : 0) * 150 + 200}ms`; // Рассчитываем задержку
+                 }
+                 ctaButton.parentElement.classList.add('is-visible');
+            }
+
+            /*
+            // --- Код анимации фона Canvas (закомментирован) ---
+            const bgCanvas = document.getElementById('background-canvas-main'); 
+            if (bgCanvas) { 
+                const ctx = bgCanvas.getContext('2d');
+                let animationFrameId;
+
+                const numStripes = 6; // Количество полос
+                const stripeColors = ['#38BDF8', '#60A5FA', '#8B5CF6', '#A78BFA', '#C4B5FD', '#7C3AED']; // Цвета полос
+                let stripes = [];
+                const constantOpacity = 0.12; // Постоянная прозрачность холста
+                const glowBlur = 6; // Размытие для эффекта свечения полос
+
+                function resizeCanvas() { // Функция для изменения размера холста
+                    bgCanvas.width = window.innerWidth;
+                    bgCanvas.height = window.innerHeight; 
+                    initializeStripes(); // Переинициализация полос при изменении размера
+                    bgCanvas.style.opacity = constantOpacity.toFixed(2); 
+                }
+
+                // Конструктор объекта Stripe (полоса)
+                function Stripe(x, y, angle, speed, color, lineWidth, amplitude, frequency, length) {
+                    this.x = x; // Координата X
+                    this.y = y; // Координата Y
+                    this.angle = angle; // Угол наклона
+                    this.speed = speed; // Скорость движения
+                    this.color = color; // Цвет
+                    this.lineWidth = lineWidth; // Толщина линии
+                    this.amplitude = amplitude; // Амплитуда волны
+                    this.frequency = frequency; // Частота волны
+                    this.phase = Math.random() * Math.PI * 2; // Начальная фаза волны
+                    this.time = Math.random() * 100; // Временной сдвиг для анимации
+                    this.length = length; // Длина полосы
+                }
+
+                // Метод обновления положения и состояния полосы
+                Stripe.prototype.update = function() {
+                    this.x += Math.cos(this.angle) * this.speed; // Движение по X
+                    this.y += Math.sin(this.angle) * this.speed; // Движение по Y
+                    this.time += 0.02; // Изменение времени для анимации волны
+
+                    // Возвращение полосы на экран, если она ушла за пределы
+                    const margin = this.length * 0.6; 
+                    if (this.x < -margin) this.x = bgCanvas.width + margin * 0.95; 
+                    if (this.x > bgCanvas.width + margin) this.x = -margin * 0.95; 
+                    if (this.y < -margin) this.y = bgCanvas.height + margin * 0.95; 
+                    if (this.y > bgCanvas.height + margin) this.y = -margin * 0.95; 
+                };
+
+                // Метод отрисовки полосы
+                Stripe.prototype.draw = function(ctx) {
+                    ctx.save(); // Сохранение текущего состояния контекста
+                    ctx.beginPath();
+                    ctx.strokeStyle = this.color;
+                    ctx.lineWidth = this.lineWidth;
+                    ctx.globalAlpha = 0.7; // Прозрачность самой полосы
+
+                    if (glowBlur > 0) { // Эффект свечения
+                        ctx.shadowBlur = glowBlur;
+                        ctx.shadowColor = this.color; 
+                    }
+
+                    ctx.translate(this.x, this.y); // Перемещение начала координат
+                    ctx.rotate(this.angle); // Поворот
+
+                    // Отрисовка волнистой линии
+                    for (let i = -this.length / 2; i < this.length / 2; i++) {
+                        const waveX = i;
+                        const waveY = this.amplitude * Math.sin(i * this.frequency + this.time + this.phase);
+                        if (i === -this.length / 2) {
+                            ctx.moveTo(waveX, waveY);
+                        } else {
+                            ctx.lineTo(waveX, waveY);
+                        }
+                    }
+                    ctx.stroke(); // Отрисовка линии
+                    ctx.shadowBlur = 0; // Сброс тени
+                    ctx.restore(); // Восстановление состояния контекста
+                };
+
+                // Инициализация полос
+                function initializeStripes() {
+                    stripes = [];
+                    const baseLength = Math.max(bgCanvas.width, bgCanvas.height) * 0.7; // Базовая длина полосы
+
+                    for (let i = 0; i < numStripes; i++) {
+                        const x = Math.random() * bgCanvas.width; 
+                        const y = Math.random() * bgCanvas.height; 
+                        const angle = (Math.random() * Math.PI/2) - Math.PI/4; // Случайный угол (от -45 до +45 градусов)
+                        const speed = Math.random() * 0.25 + 0.1; 
+                        const color = stripeColors[i % stripeColors.length];
+                        const lineWidth = Math.random() * 1 + 0.5; 
+                        const amplitude = Math.random() * 10 + 5; 
+                        const frequency = Math.random() * 0.02 + 0.005; 
+                        const length = baseLength * (Math.random() * 0.3 + 0.7); 
+                        stripes.push(new Stripe(x, y, angle, speed, color, lineWidth, amplitude, frequency, length));
+                    }
+                }
+                
+                // Функция анимации фона
+                function animateBackground() {
+                    ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height); // Очистка холста
+                    stripes.forEach(stripe => { // Обновление и отрисовка каждой полосы
+                        stripe.update();
+                        stripe.draw(ctx);
+                    });
+                    animationFrameId = requestAnimationFrame(animateBackground); // Запрос следующего кадра анимации
+                }
+
+                resizeCanvas(); // Первоначальная настройка размера холста
+                animateBackground(); // Запуск анимации
+
+                // Обработчик изменения размера окна для адаптивности фона
+                window.addEventListener('resize', () => {
+                    cancelAnimationFrame(animationFrameId); // Остановка текущей анимации
+                    resizeCanvas(); 
+                    animateBackground(); 
+                });
+            }
+            */
+        }); 
+
+        // Обработчик ошибок для изображений-заглушек
+        document.querySelectorAll('img[src^="https://placehold.co"]').forEach(img => {
+            img.onerror = function() {
+                this.src='https://placehold.co/400x300/cccccc/ffffff?text=Ошибка+изображения';
+                console.warn(`Failed to load image: ${this.alt}`);
+            };
+        });
+    </script>
+</body>
+</html>
