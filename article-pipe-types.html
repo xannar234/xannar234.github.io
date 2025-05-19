@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Типы обсадных труб: плюсы и минусы - БурБРО</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #F9FAFB; 
+            color: #1F2937; 
+            position: relative; 
+        }
+        
+        header, section, footer {
+            position: relative;
+            z-index: 1; 
+        }
+        section#article-detail { /* Уточняем селектор для секции статьи */
+             background-color: #FFFFFF; /* Белый фон для контента статьи */
+             padding-top: 4rem;
+             padding-bottom: 4rem;
+        }
+        header {
+            background-color: #FFFFFF; 
+        }
+        footer {
+            background-color: #F3F4F6; 
+        }
+
+        .page-title { /* Стиль для основного заголовка статьи */
+            font-size: 2.5rem; 
+            line-height: 1.2;
+            font-weight: 700; 
+            text-align: center; 
+            margin-bottom: 2rem; 
+            color: #111827; 
+        }
+        @media (min-width: 768px) {
+            .page-title {
+                font-size: 3.25rem; 
+            }
+        }
+        
+        .article-content {
+            max-width: 800px; /* Ограничиваем ширину контента для лучшей читаемости */
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .article-content h2 { /* Подзаголовки в статье */
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #1F2937;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .article-content h3 { /* Под-подзаголовки в статье */
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #111827;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .article-content p, .article-content ul li {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+        .article-content ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .article-content strong {
+            font-weight: 600;
+            color: #111827;
+        }
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .article-image-placeholder {
+            width: 100%;
+            height: 300px; 
+            background-color: #E5E7EB; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9CA3AF;
+            font-style: italic;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+
+        .animated-gradient-text {
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8); 
+            background-size: 200% auto; 
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gradient-flow 4s linear infinite; 
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+         .animated-section {
+            opacity: 0;
+            transform: translateY(30px); 
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+        }
+        .animated-section.is-visible {
+            opacity: 1;
+            transform: translateY(0); 
+        }
+
+        .btn { 
+            padding-left: 1.5rem; 
+            padding-right: 1.5rem; 
+            padding-top: 0.5rem;  
+            padding-bottom: 0.5rem; 
+            border-radius: 9999px; 
+            font-weight: 600; 
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); 
+            transition-duration: 300ms; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+            display: inline-block; 
+            text-align: center; 
+            border: 1px solid transparent; 
+            font-size: 0.875rem; 
+        }
+        .btn-primary { 
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8); 
+            background-size: 200% auto; 
+            animation: gradient-flow 4s linear infinite; 
+            color: white;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body class="text-gray-800">
+    <svg width="0" height="0" style="position:absolute;pointer-events:none;visibility:hidden;">
+      <defs>
+        <linearGradient id="iconAnimatedGradient" gradientUnits="objectBoundingBox" x1="0" y1="0.5" x2="2" y2="0.5"> 
+            <stop offset="0%" stop-color="#38BDF8"/>
+            <stop offset="25%" stop-color="#A78BFA"/>
+            <stop offset="50%" stop-color="#8B5CF6"/>
+            <stop offset="75%" stop-color="#6366F1"/>
+            <stop offset="100%" stop-color="#38BDF8"/>
+            <animateTransform
+                attributeName="gradientTransform"
+                type="translate"
+                values="0,0; -1,0; 0,0" 
+                dur="3s"
+                repeatCount="indefinite" />
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold animated-gradient-text">БурБРО</a> 
+            <div class="space-x-4 hidden md:flex">
+                <a href="index.html" class="text-gray-600 hover:text-sky-600 transition-colors">Главная</a>
+                <a href="services.html" class="text-gray-600 hover:text-sky-600 transition-colors">Услуги</a>
+                <a href="pricing.html" class="text-gray-600 hover:text-sky-600 transition-colors">Цены</a> 
+                <a href="articles.html" class="text-sky-600 font-semibold transition-colors">Статьи</a> 
+                <a href="contact.html" class="animated-gradient-text font-semibold">Оставить заявку</a> 
+            </div>
+            <button id="mobileMenuButton" class="md:hidden text-gray-600 hover:text-sky-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg">
+            <a href="index.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Главная</a>
+            <a href="services.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Услуги</a>
+            <a href="pricing.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Цены</a>
+            <a href="articles.html" class="block px-6 py-3 text-sky-600 font-semibold hover:bg-gray-100 transition-colors">Статьи</a> 
+            <a href="contact.html" class="block px-6 py-3 animated-gradient-text font-semibold">Оставить заявку</a>
+        </div>
+    </header>
+
+    <section id="article-detail" class="animated-section">
+        <div class="article-content">
+            <h1 class="page-title">Типы обсадных труб: плюсы и минусы</h1>
+            
+            <p class="text-lg text-gray-600 mb-8">Выбор обсадной трубы – одно из важнейших решений при бурении скважины на воду. От материала и качества трубы напрямую зависит долговечность скважины, чистота воды и надежность всей системы водоснабжения. Рассмотрим основные типы обсадных труб, их преимущества и недостатки.</p>
+
+            <div class="article-image-placeholder">
+                <span>[Изображение: Различные типы обсадных труб или их сечения]</span>
+            </div>
+
+            <h2>1. Стальные трубы</h2>
+            <p>Традиционный и до недавнего времени самый распространенный материал для обсадки скважин. Стальные трубы обладают высокой механической прочностью.</p>
+            <h3>Плюсы стальных труб:</h3>
+            <ul>
+                <li><strong>Высокая прочность:</strong> Отлично выдерживают давление грунта, подвижки пластов, что особенно важно для глубоких скважин и сложных геологических условий.</li>
+                <li><strong>Устойчивость к механическим повреждениям:</strong> Менее подвержены повреждениям при монтаже и эксплуатации.</li>
+                <li><strong>Возможность ремонта:</strong> В некоторых случаях возможен ремонт (например, сварка).</li>
+            </ul>
+            <h3>Минусы стальных труб:</h3>
+            <ul>
+                <li><strong>Подверженность коррозии:</strong> Главный недостаток. Ржавчина не только разрушает трубу со временем, но и ухудшает качество воды, придавая ей характерный привкус и цвет. Срок службы может быть ограничен 15-25 годами в зависимости от агрессивности воды и почвы.</li>
+                <li><strong>Высокая стоимость:</strong> Металл значительно дороже пластика.</li>
+                <li><strong>Тяжелый вес:</strong> Усложняет транспортировку и монтаж, требует использования специальной техники.</li>
+                <li><strong>Зарастание отложениями:</strong> На внутренней поверхности со временем могут образовываться отложения, уменьшающие просвет трубы и дебит скважины.</li>
+            </ul>
+            <p><strong>Применение:</strong> Часто используются для глубоких артезианских скважин, в сложных геологических разрезах, а также в качестве кондуктора (внешней защитной колонны).</p>
+
+            <div class="article-image-placeholder">
+                <span>[Изображение: Пример стальной обсадной трубы]</span>
+            </div>
+
+            <h2>2. Пластиковые трубы (нПВХ - непластифицированный поливинилхлорид)</h2>
+            <p>нПВХ трубы – современный и популярный материал для обсадки скважин, специально разработанный для этих целей. Обладают рядом преимуществ перед сталью.</p>
+            <h3>Плюсы нПВХ труб:</h3>
+            <ul>
+                <li><strong>Устойчивость к коррозии:</strong> Абсолютно не ржавеют, не вступают в реакцию с водой, не влияют на ее вкус и цвет. Срок службы может достигать 50 лет и более.</li>
+                <li><strong>Химическая инертность:</strong> Не выделяют в воду вредных веществ.</li>
+                <li><strong>Малый вес:</strong> Значительно облегчают транспортировку и монтаж, позволяют использовать менее мощную технику.</li>
+                <li><strong>Гладкая внутренняя поверхность:</strong> Препятствует образованию отложений и зарастанию, сохраняя дебит скважины.</li>
+                <li><strong>Простота соединения:</strong> Обычно соединяются резьбовым способом, обеспечивая герметичность.</li>
+                <li><strong>Доступная стоимость:</strong> Дешевле стальных аналогов.</li>
+            </ul>
+            <h3>Минусы нПВХ труб:</h3>
+            <ul>
+                <li><strong>Меньшая механическая прочность по сравнению со сталью:</strong> Могут быть повреждены при сильных подвижках грунта или неосторожном монтаже на больших глубинах.</li>
+                <li><strong>Чувствительность к низким температурам:</strong> Некоторые типы нПВХ могут становиться более хрупкими при сильных морозах (важно для монтажа в зимний период).</li>
+            </ul>
+            <p><strong>Применение:</strong> Широко используются для скважин на песок и неглубоких артезианских скважин (до 80-100 метров, в зависимости от рекомендаций производителя и геологии). Идеальны для получения чистой питьевой воды.</p>
+
+            <div class="article-image-placeholder">
+                <span>[Изображение: Пример нПВХ обсадной трубы с резьбой]</span>
+            </div>
+
+            <h2>3. Пластиковые трубы (ПНД - полиэтилен низкого давления)</h2>
+            <p>Трубы ПНД также используются для скважин, но чаще в качестве эксплуатационной колонны внутри стальной или для водоподъемных систем.</p>
+            <h3>Плюсы ПНД труб:</h3>
+            <ul>
+                <li><strong>Устойчивость к коррозии и химическая инертность:</strong> Аналогично нПВХ.</li>
+                <li><strong>Гибкость и эластичность:</strong> Могут выдерживать некоторые деформации без разрушения.</li>
+                <li><strong>Морозостойкость:</strong> Хорошо переносят низкие температуры.</li>
+                <li><strong>Простота соединения:</strong> Сварка или компрессионные фитинги.</li>
+            </ul>
+            <h3>Минусы ПНД труб:</h3>
+            <ul>
+                <li><strong>Меньшая кольцевая жесткость по сравнению с нПВХ:</strong> Менее устойчивы к сдавливающим нагрузкам от грунта, поэтому в качестве основной обсадной колонны на значительные глубины применяются реже или требуют большего диаметра.</li>
+                <li><strong>Склонность к линейному расширению/сжатию при изменении температуры.</strong></li>
+            </ul>
+            <p><strong>Применение:</strong> Часто используются как внутренняя (эксплуатационная) колонна в двухтрубных конструкциях (сталь + пластик), для ремонта существующих скважин, а также для водопровода от скважины к дому.</p>
+
+            <h2>4. Комбинированные варианты (сталь + пластик)</h2>
+            <p>Для глубоких артезианских скважин часто применяется комбинированная конструкция: внешняя колонна из стальных труб для обеспечения прочности и защиты от давления пород, а внутренняя эксплуатационная колонна из пластиковых труб (нПВХ или ПНД) для контакта с водой, что гарантирует ее чистоту и долговечность системы.</p>
+            <h3>Плюсы комбинированных конструкций:</h3>
+            <ul>
+                <li><strong>Высокая прочность и надежность.</strong></li>
+                <li><strong>Защита воды от контакта с металлом.</strong></li>
+                <li><strong>Долгий срок службы всей системы.</strong></li>
+            </ul>
+            <h3>Минусы комбинированных конструкций:</h3>
+            <ul>
+                <li><strong>Наиболее высокая стоимость.</strong></li>
+                <li><strong>Сложность монтажа.</strong></li>
+            </ul>
+
+            <h2>Критерии выбора обсадной трубы</h2>
+            <p>При выборе типа обсадной трубы для вашей скважины специалисты "БурБРО" учитывают множество факторов:</p>
+            <ul>
+                <li><strong>Глубина скважины:</strong> Для глубоких скважин (>80-100 м) часто предпочтительнее сталь или комбинированные конструкции.</li>
+                <li><strong>Геологические условия участка:</strong> Наличие плывунов, валунов, неустойчивых пород требует более прочных труб.</li>
+                <li><strong>Химический состав воды:</strong> Агрессивная вода ускоряет коррозию стали.</li>
+                <li><strong>Назначение скважины:</strong> Для питьевой воды пластик предпочтительнее.</li>
+                <li><strong>Бюджет:</strong> Стоимость материалов и монтажа.</li>
+            </ul>
+            
+            <h2>Заключение</h2>
+            <p>Выбор обсадной трубы – это ответственное решение. Не существует универсально "лучшего" материала, так как оптимальный выбор зависит от конкретных условий и требований. Специалисты компании "БурБРО" всегда готовы проконсультировать вас, помочь подобрать наиболее подходящий тип обсадных труб для вашей будущей скважины, обеспечив ее надежность, долговечность и высокое качество воды на долгие годы.</p>
+
+            <div class="mt-12 text-center">
+                 <a href="articles.html" class="btn btn-primary">
+                    &larr; Назад к списку статей
+                 </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-100 text-gray-700 py-8 text-center"> 
+        <div class="container mx-auto px-6">
+            <p>&copy; <span id="currentYear"></span> БурБРО. Все права защищены.</p>
+            <p>Разработка сайта - <a href="index.html" class="text-sky-600 hover:underline">БурБРО</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Мобильное меню ---
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden'); 
+            });
+        }
+        if (mobileMenu) { 
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // --- Динамическое обновление года в футере ---
+        const currentYearElement = document.getElementById('currentYear');
+        if (currentYearElement) {
+            currentYearElement.textContent = new Date().getFullYear();
+        }
+        
+        // --- Intersection Observer для анимации секции ---
+        const observerOptions = {
+            root: null, 
+            rootMargin: '0px',
+            threshold: 0.1 
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { 
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); 
+                } 
+            });
+        };
+
+        const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+        const elementsToObserve = document.querySelectorAll('.animated-section'); 
+        elementsToObserve.forEach(el => {
+            intersectionObserver.observe(el); 
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const articleSection = document.querySelector('#article-detail.animated-section');
+            if(articleSection) {
+                const rect = articleSection.getBoundingClientRect();
+                const isInViewport = rect.top < window.innerHeight && rect.bottom >= 0;
+                if (isInViewport) {
+                    articleSection.classList.add('is-visible');
+                }
+            }
+        }); 
+    </script>
+</body>
+</html>
