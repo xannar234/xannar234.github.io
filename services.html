@@ -79,31 +79,30 @@
             width: 100%; 
         }
         
-        /* Обновленные стили для карточек услуг на странице services.html */
         .service-page-card {
             background-color: #FFFFFF; 
             display: flex;
             flex-direction: column;
-            text-align: left; /* Выравнивание текста по левому краю */
+            text-align: left; 
         }
 
         .service-page-card-content {
-            padding: 1.5rem; /* Внутренние отступы для контента */
+            padding: 1.5rem; 
         }
 
         .service-page-card-content h3 {
-            font-size: 1.75rem; /* Увеличенный размер заголовка услуги */
+            font-size: 1.75rem; 
             line-height: 2.25rem;
             font-weight: 700; 
             margin-bottom: 1rem; 
             color: #111827; 
-            text-align: center; /* Заголовок услуги по центру */
+            text-align: center; 
         }
         .service-page-card-content p, 
         .service-page-card-content ul li {
             font-size: 0.95rem; 
             line-height: 1.6rem;
-            color: #374151; /* Немного темнее для основного текста */
+            color: #374151; 
             margin-bottom: 0.75rem;
         }
         .service-page-card-content ul {
@@ -117,16 +116,16 @@
         }
         .service-image-placeholder {
             width: 100%;
-            height: 200px; /* Фиксированная высота для изображения */
-            background-color: #E5E7EB; /* Цвет фона для плейсхолдера */
+            height: 200px; 
+            background-color: #E5E7EB; 
             display: flex;
             align-items: center;
             justify-content: center;
             color: #9CA3AF;
             font-style: italic;
-            border-radius: 0.75rem; /* Скругление для плейсхолдера */
-            margin-top: 1rem; /* Отступ сверху для изображения */
-            margin-bottom: 1.5rem; /* Отступ снизу для изображения */
+            border-radius: 0.75rem; 
+            margin-top: 1rem; 
+            margin-bottom: 1.5rem; 
             text-align: center;
         }
         
@@ -205,7 +204,7 @@
                 <a href="index.html" class="text-gray-600 hover:text-sky-600 transition-colors">Главная</a>
                 <a href="services.html" class="text-sky-600 font-semibold transition-colors">Услуги</a> 
                 <a href="pricing.html" class="text-gray-600 hover:text-sky-600 transition-colors">Цены</a> 
-                <a href="contact.html" class="animated-gradient-text font-semibold">Оставить заявку</a> 
+                <a href="articles.html" class="text-gray-600 hover:text-sky-600 transition-colors">Статьи</a> <a href="contact.html" class="animated-gradient-text font-semibold">Оставить заявку</a> 
             </div>
             <button id="mobileMenuButton" class="md:hidden text-gray-600 hover:text-sky-600">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -217,7 +216,7 @@
             <a href="index.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Главная</a>
             <a href="services.html" class="block px-6 py-3 text-sky-600 font-semibold hover:bg-gray-100 transition-colors">Услуги</a>
             <a href="pricing.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Цены</a>
-            <a href="contact.html" class="block px-6 py-3 animated-gradient-text font-semibold">Оставить заявку</a>
+            <a href="articles.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Статьи</a> <a href="contact.html" class="block px-6 py-3 animated-gradient-text font-semibold">Оставить заявку</a>
         </div>
     </header>
 
@@ -450,7 +449,7 @@
         };
 
         const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
-        const elementsToObserve = document.querySelectorAll('.animated-section, .stagger-container, .gradient-border-wrapper, .stagger-item'); // Добавлен .stagger-item для прямой обработки
+        const elementsToObserve = document.querySelectorAll('.animated-section, .stagger-container, .gradient-border-wrapper, .stagger-item');
         elementsToObserve.forEach(el => {
             intersectionObserver.observe(el); 
         });
@@ -460,12 +459,10 @@
             if(servicesSection) {
                 servicesSection.classList.add('is-visible'); 
             }
-            // Принудительно делаем видимыми stagger-item внутри #services-content при загрузке, если они уже в viewport
             const servicesStaggerContainer = document.querySelector('#services-content .stagger-container');
             if(servicesStaggerContainer){
                  const items = servicesStaggerContainer.querySelectorAll('.stagger-item');
                  items.forEach((item, index) => {
-                    // Проверяем, видим ли элемент уже
                     const rect = item.getBoundingClientRect();
                     const isInViewport = rect.top < window.innerHeight && rect.bottom >= 0;
 
