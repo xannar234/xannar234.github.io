@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Уход за скважиной: как продлить срок службы - БурБРО</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #F9FAFB; 
+            color: #1F2937; 
+            position: relative; 
+        }
+        
+        header, section, footer {
+            position: relative;
+            z-index: 1; 
+        }
+        section#article-detail { /* Уточняем селектор для секции статьи */
+             background-color: #FFFFFF; /* Белый фон для контента статьи */
+             padding-top: 4rem;
+             padding-bottom: 4rem;
+        }
+        header {
+            background-color: #FFFFFF; 
+        }
+        footer {
+            background-color: #F3F4F6; 
+        }
+
+        .page-title { /* Стиль для основного заголовка статьи */
+            font-size: 2.5rem; 
+            line-height: 1.2;
+            font-weight: 700; 
+            text-align: center; 
+            margin-bottom: 2rem; 
+            color: #111827; 
+        }
+        @media (min-width: 768px) {
+            .page-title {
+                font-size: 3.25rem; 
+            }
+        }
+        
+        .article-content {
+            max-width: 800px; /* Ограничиваем ширину контента для лучшей читаемости */
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .article-content h2 { /* Подзаголовки в статье */
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #1F2937;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .article-content h3 { /* Под-подзаголовки в статье */
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #111827;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .article-content p, .article-content ul li {
+            font-size: 1rem;
+            line-height: 1.75;
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+        .article-content ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .article-content strong {
+            font-weight: 600;
+            color: #111827;
+        }
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .article-image-placeholder {
+            width: 100%;
+            height: 300px; 
+            background-color: #E5E7EB; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9CA3AF;
+            font-style: italic;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+
+        .animated-gradient-text {
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8); 
+            background-size: 200% auto; 
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gradient-flow 4s linear infinite; 
+        }
+
+        @keyframes gradient-flow {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+         .animated-section {
+            opacity: 0;
+            transform: translateY(30px); 
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+        }
+        .animated-section.is-visible {
+            opacity: 1;
+            transform: translateY(0); 
+        }
+
+        .btn { 
+            padding-left: 1.5rem; 
+            padding-right: 1.5rem; 
+            padding-top: 0.5rem;  
+            padding-bottom: 0.5rem; 
+            border-radius: 9999px; 
+            font-weight: 600; 
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); 
+            transition-duration: 300ms; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+            display: inline-block; 
+            text-align: center; 
+            border: 1px solid transparent; 
+            font-size: 0.875rem; 
+        }
+        .btn-primary { 
+            background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8); 
+            background-size: 200% auto; 
+            animation: gradient-flow 4s linear infinite; 
+            color: white;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body class="text-gray-800">
+    <svg width="0" height="0" style="position:absolute;pointer-events:none;visibility:hidden;">
+      <defs>
+        <linearGradient id="iconAnimatedGradient" gradientUnits="objectBoundingBox" x1="0" y1="0.5" x2="2" y2="0.5"> 
+            <stop offset="0%" stop-color="#38BDF8"/>
+            <stop offset="25%" stop-color="#A78BFA"/>
+            <stop offset="50%" stop-color="#8B5CF6"/>
+            <stop offset="75%" stop-color="#6366F1"/>
+            <stop offset="100%" stop-color="#38BDF8"/>
+            <animateTransform
+                attributeName="gradientTransform"
+                type="translate"
+                values="0,0; -1,0; 0,0" 
+                dur="3s"
+                repeatCount="indefinite" />
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold animated-gradient-text">БурБРО</a> 
+            <div class="space-x-4 hidden md:flex">
+                <a href="index.html" class="text-gray-600 hover:text-sky-600 transition-colors">Главная</a>
+                <a href="services.html" class="text-gray-600 hover:text-sky-600 transition-colors">Услуги</a>
+                <a href="pricing.html" class="text-gray-600 hover:text-sky-600 transition-colors">Цены</a> 
+                <a href="articles.html" class="text-sky-600 font-semibold transition-colors">Статьи</a> 
+                <a href="contact.html" class="animated-gradient-text font-semibold">Оставить заявку</a> 
+            </div>
+            <button id="mobileMenuButton" class="md:hidden text-gray-600 hover:text-sky-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg">
+            <a href="index.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Главная</a>
+            <a href="services.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Услуги</a>
+            <a href="pricing.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Цены</a>
+            <a href="articles.html" class="block px-6 py-3 text-sky-600 font-semibold hover:bg-gray-100 transition-colors">Статьи</a> 
+            <a href="contact.html" class="block px-6 py-3 animated-gradient-text font-semibold">Оставить заявку</a>
+        </div>
+    </header>
+
+    <section id="article-detail" class="animated-section">
+        <div class="article-content">
+            <h1 class="page-title">Уход за скважиной: как продлить срок службы</h1>
+            
+            <p class="text-lg text-gray-600 mb-8">Собственная скважина на участке – это источник чистой воды и независимость от центрального водоснабжения. Однако, как и любое сложное инженерное сооружение, скважина требует регулярного ухода и внимания. Правильная эксплуатация и своевременное обслуживание помогут значительно продлить срок ее службы и сохранить высокое качество воды на долгие годы.</p>
+
+            <div class="article-image-placeholder">
+                <span>[Изображение: Чистая вода, льющаяся из крана, или ухоженное устье скважины]</span>
+            </div>
+
+            <h2>1. Регулярная проверка и наблюдение</h2>
+            <p>Внимательное отношение к работе вашей скважины – первый шаг к ее долголетию. Обращайте внимание на следующие моменты:</p>
+            <ul>
+                <li><strong>Визуальный осмотр:</strong> Периодически осматривайте устье скважины (кессон или оголовок адаптера) на предмет отсутствия подтоплений, повреждений, коррозии (если есть металлические части). Убедитесь в герметичности соединений.</li>
+                <li><strong>Работа насоса:</strong> Прислушивайтесь к работе насоса. Появление посторонних шумов, вибраций, частые включения/выключения могут свидетельствовать о неисправностях или необходимости настройки автоматики.</li>
+                <li><strong>Качество воды:</strong> Следите за изменениями цвета, запаха, привкуса воды. Появление песка, глины или другого осадка – сигнал к действию.</li>
+                <li><strong>Дебит скважины:</strong> Если вы заметили значительное снижение напора воды или уменьшение ее количества, это может указывать на заиливание фильтра, проблемы с насосом или истощение водоносного горизонта (что бывает редко при правильном бурении).</li>
+            </ul>
+
+            <h2>2. Профилактическое обслуживание</h2>
+            <p>Рекомендуется проводить плановое профилактическое обслуживание скважины <strong>раз в 1-3 года</strong>, даже если видимых проблем нет. Это поможет выявить и устранить мелкие неисправности на ранней стадии, предотвратив серьезные поломки.</p>
+            <div class="article-image-placeholder">
+                <span>[Изображение: Специалист проводит обслуживание насосного оборудования]</span>
+            </div>
+            <h3>Что обычно включает профилактика:</h3>
+            <ul>
+                <li><strong>Проверка состояния насосного оборудования:</strong> Осмотр насоса, кабеля, троса. Замер рабочих токов насоса.</li>
+                <li><strong>Проверка герметичности системы:</strong> Осмотр всех соединений от скважины до ввода в дом.</li>
+                <li><strong>Очистка фильтров грубой очистки:</strong> Если они установлены в системе перед гидроаккумулятором.</li>
+                <li><strong>Проверка и настройка автоматики:</strong> Контроль давления включения/выключения насоса (реле давления), проверка давления воздуха в гидроаккумуляторе.</li>
+                <li><strong>Промывка скважины (при необходимости):</strong> Легкая промывка для удаления незначительных отложений.</li>
+            </ul>
+
+            <h2>3. Чистка скважины</h2>
+            <p>Со временем в скважине могут накапливаться иловые отложения, песок, ржавчина (особенно в старых стальных скважинах), что приводит к снижению дебита и ухудшению качества воды.</p>
+            <h3>Когда необходима чистка:</h3>
+            <ul>
+                <li>Заметное снижение напора и количества воды.</li>
+                <li>Появление в воде песка, ила, мути.</li>
+                <li>Изменение вкуса или запаха воды.</li>
+            </ul>
+            <h3>Основные методы чистки:</h3>
+            <ul>
+                <li><strong>Промывка водой под высоким давлением:</strong> Эффективна для удаления рыхлых отложений.</li>
+                <li><strong>Прокачка эрлифтом:</strong> Подъем воды вместе с загрязнениями с помощью сжатого воздуха.</li>
+                <li><strong>Использование специальных реагентов:</strong> Применяется для растворения железистых или карбонатных отложений. Требует осторожности и должно проводиться специалистами с последующей тщательной промывкой скважины.</li>
+                <li><strong>Механическая чистка:</strong> Использование скребков, щеток, желонок для удаления плотных отложений.</li>
+            </ul>
+            <p>Выбор метода чистки зависит от типа скважины, характера загрязнений и должен определяться специалистом после диагностики.</p>
+
+            <h2>4. Защита от замерзания</h2>
+            <p>В зимний период важно обеспечить защиту скважины и водопровода от замерзания:</p>
+            <ul>
+                <li><strong>Правильное обустройство:</strong> Кессон должен быть заглублен ниже уровня промерзания грунта, а скважинный адаптер обеспечивает вывод трубы на глубине.</li>
+                <li><strong>Утепление труб:</strong> Участки водопровода, проходящие в неотапливаемых помещениях или на небольшой глубине, должны быть утеплены.</li>
+                <li><strong>Греющий кабель:</strong> В особо суровых условиях или при недостаточной глубине заложения труб может использоваться саморегулирующийся греющий кабель.</li>
+            </ul>
+
+            <h2>5. Консервация скважины на зиму (при сезонном использовании)</h2>
+            <p>Если скважина не используется в зимний период (например, на даче), ее необходимо правильно законсервировать:</p>
+            <ul>
+                <li>Отключить насос от электропитания.</li>
+                <li>Полностью слить воду из всей системы: из гидроаккумулятора, труб, фильтров, нагревательных приборов.</li>
+                <li>Обеспечить герметичность устья скважины (оголовка) для предотвращения попадания мусора и талых вод.</li>
+            </ul>
+
+            <h2>6. Регулярный анализ воды</h2>
+            <p>Даже если вода кажется чистой, рекомендуется проводить ее лабораторный анализ <strong>не реже одного раза в год</strong>, а также после паводков или любых заметных изменений ее качества. Это позволит контролировать содержание различных примесей и своевременно принять меры по водоочистке, если это необходимо.</p>
+
+            <h2>Когда обращаться к специалистам "БурБРО"?</h2>
+            <p>Некоторые профилактические меры владелец скважины может выполнять самостоятельно. Однако для проведения диагностики, чистки, ремонта насосного оборудования или устранения сложных неисправностей всегда лучше обращаться к профессионалам. Попытки самостоятельного неквалифицированного вмешательства могут привести к усугублению проблемы и даже к полной потере скважины.</p>
+            <p>Специалисты "БурБРО" обладают необходимым опытом, знаниями и оборудованием для качественного обслуживания и ремонта скважин любого типа.</p>
+
+            <h2>Заключение</h2>
+            <p>Скважина на воду – это надежный источник комфорта, но она требует заботы. Регулярный уход, своевременное обслуживание и внимание к ее работе позволят вам наслаждаться чистой водой без перебоев на протяжении многих десятилетий. Помните, что профилактика всегда дешевле и проще, чем капитальный ремонт.</p>
+
+            <div class="mt-12 text-center">
+                 <a href="articles.html" class="btn btn-primary">
+                    &larr; Назад к списку статей
+                 </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-100 text-gray-700 py-8 text-center"> 
+        <div class="container mx-auto px-6">
+            <p>&copy; <span id="currentYear"></span> БурБРО. Все права защищены.</p>
+            <p>Разработка сайта - <a href="index.html" class="text-sky-600 hover:underline">БурБРО</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Мобильное меню ---
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden'); 
+            });
+        }
+        if (mobileMenu) { 
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // --- Динамическое обновление года в футере ---
+        const currentYearElement = document.getElementById('currentYear');
+        if (currentYearElement) {
+            currentYearElement.textContent = new Date().getFullYear();
+        }
+        
+        // --- Intersection Observer для анимации секции ---
+        const observerOptions = {
+            root: null, 
+            rootMargin: '0px',
+            threshold: 0.1 
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { 
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); 
+                } 
+            });
+        };
+
+        const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+        const elementsToObserve = document.querySelectorAll('.animated-section'); 
+        elementsToObserve.forEach(el => {
+            intersectionObserver.observe(el); 
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const articleSection = document.querySelector('#article-detail.animated-section');
+            if(articleSection) {
+                const rect = articleSection.getBoundingClientRect();
+                const isInViewport = rect.top < window.innerHeight && rect.bottom >= 0;
+                if (isInViewport) {
+                    articleSection.classList.add('is-visible');
+                }
+            }
+        }); 
+    </script>
+</body>
+</html>
