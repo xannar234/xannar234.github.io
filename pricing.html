@@ -175,7 +175,7 @@
         /* Стилизация ползунка (range input) */
         .calculator-content-wrapper input[type="range"] {
             width: 100%;
-            height: 16px; /* ИЗМЕНЕНО: Увеличена высота для вмещения большего бегунка */
+            height: 24px; 
             -webkit-appearance: none; 
             appearance: none;
             background: #E5E7EB; 
@@ -189,15 +189,15 @@
         /* Стилизация трека (полоски) */
         .calculator-content-wrapper input[type="range"]::-webkit-slider-runnable-track {
             width: 100%;
-            height: 8px; /* ИЗМЕНЕНО: Увеличена высота полосы */
-            background: transparent; /* Фон трека будет задан через градиент на самом input */
+            height: 8px; 
+            background: transparent; 
             border-radius: 9999px;
             border: none;
         }
         .calculator-content-wrapper input[type="range"]::-moz-range-track {
             width: 100%;
-            height: px; /* ИЗМЕНЕНО: Увеличена высота полосы */
-            background: transparent; /* Фон трека будет задан через градиент на самом input */
+            height: 8px; 
+            background: transparent; 
             border-radius: 9999px;
             border: none;
             cursor: pointer;
@@ -207,26 +207,26 @@
         .calculator-content-wrapper input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none; 
             appearance: none;
-            width: 24px; /* ИЗМЕНЕНО: Увеличен размер бегунка */
-            height: 24px; /* ИЗМЕНЕНО: Увеличен размер бегунка */
+            width: 24px; 
+            height: 24px; 
             border-radius: 9999px; 
             background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8);
             background-size: 200% auto;
             animation: gradient-flow 4s linear infinite;
             cursor: pointer;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.25); /* Слегка увеличена тень */
-            margin-top: -8px; /* ИЗМЕНЕНО: (8px track - 24px thumb) / 2 для центрирования */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.25); 
+            margin-top: -8px; 
         }
         .calculator-content-wrapper input[type="range"]::-moz-range-thumb {
-            width: 24px; /* ИЗМЕНЕНО: Увеличен размер бегунка */
-            height: 24px; /* ИЗМЕНЕНО: Увеличен размер бегунка */
+            width: 24px; 
+            height: 24px; 
             border-radius: 9999px;
             background-image: linear-gradient(to right, #38BDF8, #A78BFA, #38BDF8);
             background-size: 200% auto;
             animation: gradient-flow 4s linear infinite;
             cursor: pointer;
             border: none; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.25); /* Слегка увеличена тень */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.25); 
         }
 
 
@@ -319,7 +319,7 @@
                 <a href="index.html" class="text-gray-600 hover:text-sky-600 transition-colors">Главная</a>
                 <a href="services.html" class="text-gray-600 hover:text-sky-600 transition-colors">Услуги</a>
                 <a href="pricing.html" class="text-sky-600 font-semibold transition-colors">Цены</a> 
-                <a href="contact.html" class="animated-gradient-text font-semibold">Оставить заявку</a> 
+                <a href="articles.html" class="text-gray-600 hover:text-sky-600 transition-colors">Статьи</a> <a href="contact.html" class="animated-gradient-text font-semibold">Оставить заявку</a> 
             </div>
             <button id="mobileMenuButton" class="md:hidden text-gray-600 hover:text-sky-600">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -331,7 +331,7 @@
             <a href="index.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Главная</a>
             <a href="services.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Услуги</a>
             <a href="pricing.html" class="block px-6 py-3 text-sky-600 font-semibold hover:bg-gray-100 transition-colors">Цены</a>
-            <a href="contact.html" class="block px-6 py-3 animated-gradient-text font-semibold">Оставить заявку</a>
+            <a href="articles.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Статьи</a> <a href="contact.html" class="block px-6 py-3 animated-gradient-text font-semibold">Оставить заявку</a>
         </div>
     </header>
 
@@ -339,7 +339,8 @@
         <div class="container mx-auto px-6">
             <h2 class="section-title">Цены на услуги</h2>
             <div class="pricing-table-container stagger-container">
-                <div class="gradient-border-wrapper stagger-item"> <div class="pricing-table">
+                <div class="gradient-border-wrapper stagger-item">
+                    <div class="pricing-table">
                         <table>
                             <thead>
                                 <tr>
@@ -398,7 +399,8 @@
                 </div>
                 <p class="text-center text-gray-600 mt-8 stagger-item" style="transition-delay: 200ms;">* Точная стоимость работ определяется после выезда специалиста и составления сметы. Выезд и консультация - бесплатно!</p>
                  
-                <div class="gradient-border-wrapper max-w-2xl mx-auto mt-12 stagger-item" style="transition-delay: 400ms;"> <div class="calculator-content-wrapper"> 
+                <div class="gradient-border-wrapper max-w-2xl mx-auto mt-12 stagger-item" style="transition-delay: 400ms;">
+                    <div class="calculator-content-wrapper"> 
                         <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Калькулятор стоимости скважины</h3>
                         
                         <div class="mb-6 radio-group">
@@ -484,20 +486,12 @@
                             }
                         });
                     }
-                } else {
-                    // target.classList.remove('is-visible'); 
-                    // if (target.classList.contains('stagger-container')) {
-                    //     const items = target.querySelectorAll('.stagger-item');
-                    //     items.forEach(item => {
-                    //         item.classList.remove('is-visible');
-                    //     });
-                    // }
                 }
             });
         };
 
         const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
-        const elementsToObserve = document.querySelectorAll('.animated-section, .stagger-container, .gradient-border-wrapper'); 
+        const elementsToObserve = document.querySelectorAll('.animated-section, .stagger-container, .gradient-border-wrapper, .stagger-item'); 
         elementsToObserve.forEach(el => {
             intersectionObserver.observe(el);
         });
@@ -511,10 +505,14 @@
             if(pricingStaggerContainer){
                  const items = pricingStaggerContainer.querySelectorAll('.stagger-item');
                  items.forEach((item, index) => {
-                    if (!item.style.transitionDelay) { 
-                        item.style.transitionDelay = `${index * 150}ms`; 
+                    const rect = item.getBoundingClientRect();
+                    const isInViewport = rect.top < window.innerHeight && rect.bottom >= 0;
+                    if (isInViewport && !item.classList.contains('is-visible')) {
+                         if (!item.style.transitionDelay) { 
+                            item.style.transitionDelay = `${index * 150}ms`; 
+                        }
+                        item.classList.add('is-visible');
                     }
-                    item.classList.add('is-visible');
                  });
             }
 
@@ -536,7 +534,6 @@
                 const colorStop2 = '#A78BFA';   
                 const trackColorUnfilled = '#E5E7EB'; 
                 
-                // Обновляем фон самого input[type="range"] для заливки трека
                 depthSlider.style.background = `linear-gradient(to right, ${colorStop1} 0%, ${colorStop2} ${value}%, ${trackColorUnfilled} ${value}%, ${trackColorUnfilled} 100%)`;
             }
 
@@ -564,121 +561,8 @@
                 wellTypeRadios.forEach(radio => {
                     radio.addEventListener('change', calculatePrice);
                 });
-                calculatePrice(); // Первоначальный расчет и отрисовка при загрузке
+                calculatePrice(); 
             }
-
-            /*
-            // --- Код анимации фона Canvas (закомментирован) ---
-            const bgCanvas = document.getElementById('background-canvas-main'); 
-            if (bgCanvas) { 
-                const ctx = bgCanvas.getContext('2d');
-                let animationFrameId;
-
-                const numStripes = 6; 
-                const stripeColors = ['#38BDF8', '#60A5FA', '#8B5CF6', '#A78BFA', '#C4B5FD', '#7C3AED']; 
-                let stripes = [];
-                const constantOpacity = 0.12; 
-                const glowBlur = 6; 
-
-                function resizeCanvas() {
-                    bgCanvas.width = window.innerWidth;
-                    bgCanvas.height = window.innerHeight; 
-                    initializeStripes();
-                    bgCanvas.style.opacity = constantOpacity.toFixed(2); 
-                }
-
-                function Stripe(x, y, angle, speed, color, lineWidth, amplitude, frequency, length) {
-                    this.x = x;
-                    this.y = y;
-                    this.angle = angle; 
-                    this.speed = speed;
-                    this.color = color;
-                    this.lineWidth = lineWidth;
-                    this.amplitude = amplitude;
-                    this.frequency = frequency;
-                    this.phase = Math.random() * Math.PI * 2;
-                    this.time = Math.random() * 100; 
-                    this.length = length; 
-                }
-
-                Stripe.prototype.update = function() {
-                    this.x += Math.cos(this.angle) * this.speed;
-                    this.y += Math.sin(this.angle) * this.speed;
-                    this.time += 0.02; 
-
-                    const margin = this.length * 0.6; 
-                    if (this.x < -margin) this.x = bgCanvas.width + margin * 0.95; 
-                    if (this.x > bgCanvas.width + margin) this.x = -margin * 0.95; 
-                    if (this.y < -margin) this.y = bgCanvas.height + margin * 0.95; 
-                    if (this.y > bgCanvas.height + margin) this.y = -margin * 0.95; 
-                };
-
-                Stripe.prototype.draw = function(ctx) {
-                    ctx.save();
-                    ctx.beginPath();
-                    ctx.strokeStyle = this.color;
-                    ctx.lineWidth = this.lineWidth;
-                    ctx.globalAlpha = 0.7; 
-
-                    if (glowBlur > 0) { 
-                        ctx.shadowBlur = glowBlur;
-                        ctx.shadowColor = this.color; 
-                    }
-
-                    ctx.translate(this.x, this.y);
-                    ctx.rotate(this.angle);
-
-                    for (let i = -this.length / 2; i < this.length / 2; i++) {
-                        const waveX = i;
-                        const waveY = this.amplitude * Math.sin(i * this.frequency + this.time + this.phase);
-                        if (i === -this.length / 2) {
-                            ctx.moveTo(waveX, waveY);
-                        } else {
-                            ctx.lineTo(waveX, waveY);
-                        }
-                    }
-                    ctx.stroke();
-                    ctx.shadowBlur = 0; 
-                    ctx.restore();
-                };
-
-                function initializeStripes() {
-                    stripes = [];
-                    const baseLength = Math.max(bgCanvas.width, bgCanvas.height) * 0.7; 
-
-                    for (let i = 0; i < numStripes; i++) {
-                        const x = Math.random() * bgCanvas.width; 
-                        const y = Math.random() * bgCanvas.height; 
-                        const angle = (Math.random() * Math.PI/2) - Math.PI/4; 
-                        const speed = Math.random() * 0.25 + 0.1; 
-                        const color = stripeColors[i % stripeColors.length];
-                        const lineWidth = Math.random() * 1 + 0.5; 
-                        const amplitude = Math.random() * 10 + 5; 
-                        const frequency = Math.random() * 0.02 + 0.005; 
-                        const length = baseLength * (Math.random() * 0.3 + 0.7); 
-                        stripes.push(new Stripe(x, y, angle, speed, color, lineWidth, amplitude, frequency, length));
-                    }
-                }
-                
-                function animateBackground() {
-                    ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height); 
-                    stripes.forEach(stripe => {
-                        stripe.update();
-                        stripe.draw(ctx);
-                    });
-                    animationFrameId = requestAnimationFrame(animateBackground);
-                }
-
-                resizeCanvas(); 
-                animateBackground(); 
-
-                window.addEventListener('resize', () => {
-                    cancelAnimationFrame(animationFrameId);
-                    resizeCanvas(); 
-                    animateBackground(); 
-                });
-            }
-            */
         }); 
 
         document.querySelectorAll('img[src^="https://placehold.co"]').forEach(img => {
