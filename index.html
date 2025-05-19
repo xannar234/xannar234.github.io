@@ -16,12 +16,12 @@
         }
 
         .hero-bg {
-            /* Обновленные стили для фона с текстурой воды и затемняющим слоем */
+            /* Фон с текстурой воды и затемняющим слоем */
             background-image: 
-                linear-gradient(rgba(0, 191, 255, 0.9), rgba(5, 25, 50, 0.75)), /* ИЗМЕНЕНО: Затемняющий градиент сделан светлее */
-                url('https://images.unsplash.com/photo-1488934082766-b6859210887e?q=80&w=1920&auto=format&fit=crop'); /* Текстура воды (волны на поверхности) */
-            background-size: cover; /* Масштабирование изображения для покрытия всей области */
-            background-position: center; /* Центрирование изображения */
+                linear-gradient(rgba(0, 191, 255, 0.9), rgba(5, 25, 50, 0.75)), 
+                url('https://images.unsplash.com/photo-1488934082766-b6859210887e?q=80&w=1920&auto=format&fit=crop'); 
+            background-size: cover; 
+            background-position: center; 
             position: relative; 
             color: #F9FAFB; 
             overflow: hidden;
@@ -309,12 +309,10 @@
     </svg>
 
     <header class="bg-white shadow-md sticky top-0"> <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold animated-gradient-text">БурБРО</a>
-            <div class="space-x-4 hidden md:flex">
-                <a href="#" class="text-gray-600 hover:text-sky-600 transition-colors">Главная</a>
-                <a href="services.html" class="text-gray-600 hover:text-sky-600 transition-colors">Услуги</a>
+            <a href="index.html" class="text-2xl font-bold animated-gradient-text">БурБРО</a> <div class="space-x-4 hidden md:flex">
+                <a href="index.html" class="text-sky-600 font-semibold transition-colors">Главная</a> <a href="services.html" class="text-gray-600 hover:text-sky-600 transition-colors">Услуги</a>
                 <a href="pricing.html" class="text-gray-600 hover:text-sky-600 transition-colors">Цены</a>
-                <a href="contact.html" class="animated-gradient-text font-semibold">Оставить заявку</a>
+                <a href="articles.html" class="text-gray-600 hover:text-sky-600 transition-colors">Статьи</a> <a href="contact.html" class="animated-gradient-text font-semibold">Оставить заявку</a>
             </div>
             <button id="mobileMenuButton" class="md:hidden text-gray-600 hover:text-sky-600">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -323,10 +321,9 @@
             </button>
         </nav>
         <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg">
-            <a href="#" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Главная</a>
-            <a href="services.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Услуги</a>
+            <a href="index.html" class="block px-6 py-3 text-sky-600 font-semibold hover:bg-gray-100 transition-colors">Главная</a> <a href="services.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Услуги</a>
             <a href="pricing.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Цены</a>
-            <a href="contact.html" class="block px-6 py-3 animated-gradient-text font-semibold">Оставить заявку</a>
+            <a href="articles.html" class="block px-6 py-3 text-gray-600 hover:bg-gray-100 hover:text-sky-600 transition-colors">Статьи</a> <a href="contact.html" class="block px-6 py-3 animated-gradient-text font-semibold">Оставить заявку</a>
         </div>
     </header>
 
@@ -456,23 +453,20 @@
         <div class="container mx-auto px-6">
             <h2 class="section-title">Отзывы клиентов</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-container">
-                <div class="gradient-border-wrapper stagger-item">
-                    <div class="content-inside-border testimonial-content-wrapper">
+                <div class="gradient-border-wrapper stagger-item"> 
+                    <div class="content-inside-border testimonial-content-wrapper"> 
                         <p class="italic mb-4">"Очень довольны работой! Вода чистая, напор хороший. Рекомендую Дмитрия как настоящего профессионала."</p>
-                        <p class="font-semibold">- Имя Клиента, Город</p>
-                    </div>
+                        <p class="font-semibold">- Имя Клиента, Город</p> </div>
                 </div>
                 <div class="gradient-border-wrapper stagger-item" style="transition-delay: 200ms;">
                     <div class="content-inside-border testimonial-content-wrapper">
                         <p class="italic mb-4">"Быстро, качественно и по разумной цене. Скважину пробурили за один день. Спасибо большое!"</p>
-                        <p class="font-semibold">- Имя Клиента, Поселок</p>
-                    </div>
+                        <p class="font-semibold">- Имя Клиента, Поселок</p> </div>
                 </div>
                 <div class="gradient-border-wrapper stagger-item" style="transition-delay: 400ms;">
                      <div class="content-inside-border testimonial-content-wrapper">
                         <p class="italic mb-4">"Долго выбирали компанию, остановились на БурБРО и не пожалели. Все объяснили, показали, сделали на совесть."</p>
-                        <p class="font-semibold">- Имя Клиента, Деревня</p>
-                    </div>
+                        <p class="font-semibold">- Имя Клиента, Деревня</p> </div>
                 </div>
             </div>
         </div>
